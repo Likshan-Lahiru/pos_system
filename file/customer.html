@@ -53,8 +53,84 @@
         </form>
     </div>
     <div id="button_section">
-        <button id="registerBtn" type="button" class="btn btn-primary">Register</button>
-        <button id="editBtn" type="button" class="btn btn-secondary">Edit Details</button>
+
+        <button id="registerBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Register</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" id="modelHeader">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New Customer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="inputMenu" class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                                <input type="text" class="form-control" id="recipient-id">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Name:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Address:</label>
+                                <input type="text" class="form-control" id="recipient-address">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                <input type="text" class="form-control" id="recipient-salary">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="registerBtn1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="closeBtn" type="button" class="btn btn-primary">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="editBtn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit Details</button>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" id="modelHeader1">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel1">New Customer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="inputMenu1" class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                                <input type="text" class="form-control" id="recipient-id1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Name:</label>
+                                <input type="text" class="form-control" id="recipient-name1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Address:</label>
+                                <input type="text" class="form-control" id="recipient-address1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                <input type="text" class="form-control" id="recipient-salary1">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button id="closeBtn1" type="button" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button id="Update" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
     </div>
@@ -95,13 +171,64 @@
         </table>
         <br>
         <div>
-            <button id="viewList" type="button" class="btn btn-warning">View All Customers</button>
+            <button id="viewList" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewAllCustomer" data-bs-whatever="@mdo">View All Customers</button>
+
         </div>
 
 
     </div>
 
 
+</section>
+<section>
+    <div class="modal fade" id="viewAllCustomer" tabindex="-1" aria-labelledby="viewCustomerLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="viewCustomerLabel">All Customers</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section id="viewAllTable">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Salary</th>
+                                <th scope="col">Address</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Lahiru</td>
+                                <td>000</td>
+                                <td>Panadura</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Hiruni</td>
+                                <td>000</td>
+                                <td>Kaluthara</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Thathsarani</td>
+                                <td>000</td>
+                                <td>Colombo</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <script src="assets/webAssets/fontawesome-free-6.5.1-web/js/all.min.js"></script>
 

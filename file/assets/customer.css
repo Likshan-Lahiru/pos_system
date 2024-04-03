@@ -53,24 +53,28 @@ body{
           height: 4vh;
           font-size: 7px;
       }
+      #exampleModal{
+          width: 50vw;
+          height: 100vh;
+
+          left: -1vw;
+      }
+      #registerBtn1{
+          width: 10vw;
+          height: 4vh;
+          font-size: 7px;
+      }
+      #closeBtn{
+          width: 10vw;
+          height: 4vh;
+          font-size: 7px;
+      }
+      #inputMenu{
+          font-size: 10px;
+      }
 
   }
- /* @media (max-width: 550px) {
-      #search_panel > div > form > input {
-          font-size: 10px;
-          height: 30px;
 
-      }
-
-      #search_panel > div > form >button {
-          font-size: 15px;
-          height: 30px;
-
-      }
-
-
-
-  }*/
 
 
 
@@ -117,4 +121,11 @@ body{
     position: absolute;
     left: 5vw;
 }
+#modelHeader{
+    background-color: #00bbff;
+}
+#viewAllCustomer{
+    background-color: #00bbff;
+}
+
 
