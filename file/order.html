@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="assets/webAssets/fontawesome-free-6.5.1-web/css/fontawesome.css">
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="assets/orders.css">
+    <link rel="stylesheet" href="assets/customer.css">
 </head>
 
 <body>
+
 
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -39,11 +41,154 @@
         </div>
     </nav>
 </header>
+<section id="title">
+    <div>
+        <h3 id="title_name">Order details</h3>
+    </div>
+</section>
 
 <section>
-    <div>
-        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi expedita facere magnam magni nemo quasi voluptatem? Adipisci blanditiis commodi consequatur, minima nam non odio officiis pariatur quas, quo, sapiente tempore!</h3>
+    <div id="invoice_details">
+        <div class="custom-card">
+            <div class="card">
+                <h5 class="card-header">Invoice Details</h5>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Order Id" aria-label="First name">
+                        </div>
+
+                        <div class="col-auto">
+                            <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+                            <select class="form-select" id="autoSizingSelect">
+                                <option selected>customer...</option>
+                                <option value="1">Lahiru</option>
+                                <option value="2">Hiruni</option>
+                                <option value="3">Rithma</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Customer ID" aria-label="Last name">
+                        </div>
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Name</label>
+                                <input type="email" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Salary</label>
+                                <input type="email" class="form-control" id="inputEmail">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>
+<section>
+    <div id="item_details">
+        <div class="custom-card">
+            <div class="card">
+                <h5 class="card-header">Invoice Details</h5>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Item Code" aria-label="First name">
+                        </div>
+
+                        <div class="col-auto">
+                            <label class="visually-hidden" for="autoSizingSelect">Preference</label>
+                            <select class="form-select" id="autoSizingSelect1">
+                                <option selected>Items...</option>
+                                <option value="1">Lahiru</option>
+                                <option value="2">Hiruni</option>
+                                <option value="3">Rithma</option>
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Item Name" aria-label="Last name">
+                        </div>
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="inputEmail2" placeholder="Price">
+                            </div>
+                            <div class="col-md-6">
+
+                                <input type="email" class="form-control" id="inputEmail1" placeholder="QtyOnHand">
+                            </div>
+
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="inputAddress1" placeholder="Order Qty">
+                            </div>
+                            <button class="btn btn-outline-success" type="submit">Add Item</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>
+<section>
+    <div id="total_form">
+        <h3>Total: 1300.00</h3>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Cash:</label>
+            <input type="text" class="form-control" id="cash" placeholder="0.00">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Discount:</label>
+            <input type="text" class="form-control" id="Discount" placeholder="0.00">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress" class="form-label">Order Qty:</label>
+            <input type="text" class="form-control" id="Balance" placeholder="Order Qty">
+        </div>
+        <br>
+        <button id="purchase" class="btn btn-outline-success" type="submit">Purchase</button>
     </div>
+</section>
+<section>
+    <div id="final">
+        <table class="table table-bordered border-primary">
+            <thead>
+            <tr>
+                <th scope="col">Item Code</th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Item price</th>
+                <th scope="col">Item Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Kiiri Samba</td>
+                <td>1000</td>
+                <td>20KG</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Baasmathi</td>
+                <td>1200</td>
+                <td>50kg</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Suwadel</td>
+                <td>900</td>
+                <td>30kg</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </section>
 
 
