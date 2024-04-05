@@ -1,5 +1,9 @@
 ### Eshan Enterprises POS System
 
+Site map link:-https://drive.google.com/file/d/1K2i-oxzP6ahsw13xqxXi6FyE-eZq_UF7/view?usp=sharing
+
+Mockup link:-https://www.figma.com/file/pqj9k4IZIalvnTLf2rsLky/Eshan-pos-System?type=design&node-id=0%3A1&mode=design&t=gsjabLE1Of8M1Ofa-1
+
 #### Introduction
 Eshan Enterprises POS System is a simple yet efficient solution for managing customers, items, and bills in a retail environment. This system provides an easy-to-use interface for businesses to streamline their operations and improve customer service.
 
