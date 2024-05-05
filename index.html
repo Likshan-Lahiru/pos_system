@@ -38,6 +38,7 @@
 
 
 <section id="customer-section">
+
     <section id="title">
         <div>
             <h3 id="title_name">Customer details
@@ -591,27 +592,7 @@
 </section>
 
 <script src="file/assets/lib/jquery-3.7.1.min.js"></script>
-<script>
-    $("#customer-section").css({display: 'block'});
-    $("#item-section").css({display: 'none'});
-    $("#order-section").css({display: 'none'});
-
-    $("#customer-btn").on('click',()=>{
-        $("#customer-section").css({display:'block'});
-        $("#item-section").css({display:'none'});
-        $("#order-section").css({display: 'none'});
-    });
-    $("#item-btn").on('click',()=>{
-        $("#item-section").css({display:'block'});
-        $("#customer-section").css({display:'none'});
-        $("#order-section").css({display: 'none'});
-    });
-    $("#store-btn").on('click',()=>{
-        $("#customer-section").css({display:'none'});
-        $("#item-section").css({display:'none'});
-        $("#order-section").css({display: 'block'});
-    });
-</script>
+<script src="script/js.js"></script>
 
 <script src="file/assets/webAssets/fontawesome-free-6.5.1-web/js/all.min.js"></script>
 </body>
