@@ -1,5 +1,7 @@
 ### Eshan Enterprises POS System
 
+Site Map :- https://www.gloomaps.com/cTWM6xXXFa
+
 Wire frame link:-https://drive.google.com/file/d/1K2i-oxzP6ahsw13xqxXi6FyE-eZq_UF7/view?usp=sharing
 
 Mockup link:-https://www.figma.com/file/pqj9k4IZIalvnTLf2rsLky/Eshan-pos-System?type=design&node-id=0%3A1&mode=design&t=gsjabLE1Of8M1Ofa-1
