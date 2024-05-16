@@ -7,6 +7,7 @@ $("#customer-btn").on('click',()=>{
     $("#item-section").css({display:'none'});
     $("#order-section").css({display: 'none'});
 });
+
 $("#item-btn").on('click',()=>{
     $("#item-section").css({display:'block'});
     $("#customer-section").css({display:'none'});
