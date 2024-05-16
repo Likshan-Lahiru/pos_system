@@ -1,61 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
+    <title>Pos System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="likshan lahiru">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style1.css">
+    <link rel="stylesheet" href="assets/css/response.css">
+    <link rel="stylesheet" href="assets/css/back.css">
 
-    <meta charset="UTF-8">
-    <title>Title</title>
 
 </head>
+
 <body>
-<header class="header">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!--<img id="logo" src="file/assets/pngwing.com.png" alt="">-->
+<body>
+<div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+</body>
+<section class="ftco-section">
+    <div class="container-fluid px-md-5">
+        <div class="row justify-content-between">
+            <div class="col-md-8 order-md-last">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <a class="navbar-brand" href="index.html">Eshan Enterprise<span>Tool Rent Shop</span></a>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <span class="nav-link active" id="customer-btn">Customer</span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="store-btn">Store</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" id="item-btn">item</a>
-                    </li>
-
-                </ul>
-
+                    </div>
+                    <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
+                        <form action="#" class="searchform order-lg-last">
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control pl-3" placeholder="Search">
+                                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-outline-success" type="submit">LogOut</button>
+            <div class="col-md-4 d-flex">
+                <div class="social-media">
+                    <p class="mb-0 d-flex">
+                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav m-auto">
+
+                    <li class="nav-item dropdown">
+                        <!-- <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
+                         <div class="dropdown-menu" aria-labelledby="dropdown04">
+                             <a class="dropdown-item" href="#">Page 1</a>
+                           <a class="dropdown-item" href="#">Page 2</a>
+                           <a class="dropdown-item" href="#">Page 3</a>
+                           <a class="dropdown-item" href="#">Page 4</a>
+                         </div>-->
+                    </li>
+                    <li id="home-btn" class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li id="customer-btn" class="nav-item"><a href="#" class="nav-link">Customer</a></li>
+                    <li id="item-btn" class="nav-item"><a href="#" class="nav-link">Store</a></li>
+                    <li id="store-btn" class="nav-item"><a href="#" class="nav-link">Orders</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-</header>
+    <!-- END nav -->
 
+</section>
+
+<section id="home-section">
+    <p id="title">Welcome to <span class="fancy"> Ashen Enterprise</span></p>
+
+    <div class="container">
+        <h1 class="text-center mb-4"></h1>
+
+        <!-- Total Counts Section -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Customers</h5>
+                        <p class="card-text large-text" id="totalCustomers">100</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Items</h5>
+                        <p class="card-text large-text" id="totalItems">500</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <p class="card-text large-text" id="totalOrders">200</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Clock and Calendar -->
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4" id="liveClock"></h2>
+                <h3 class="text-center mb-4" id="liveCalendar"></h3>
+            </div>
+        </div>
+
+        <!-- Bar Chart Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
 <section id="customer-section">
+    <div class="main-div">
+        <div class="first">
 
-    <section id="title">
-        <div>
-            <h3 id="title_name">Customer details
-                <br>
-                <i class="fa-solid fa-user"></i></h3>
-        </div>
-    </section>
-    <section id="search_panel" class="search_panel">
-        <div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search customer" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <div id="button_section">
-
-            <button id="registerBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Register</button>
+            <button id="register-btn" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><box-icon name='plus-circle'></box-icon>Register</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -91,7 +179,7 @@
                     </div>
                 </div>
             </div>
-            <button id="editBtn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit Details</button>
+            <button id="editBtn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo"><box-icon name='edit'></box-icon>Edit Details</button>
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -131,470 +219,186 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
-    </section>
-    <br>
-    <section class="table-details">
-        <div id="customerTable">
-            <table class="table">
+        <div>
+            <table class="table table-bordered border-primary">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Salary</th>
                     <th scope="col">Address</th>
+                    <th scope="col">Salary</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Lahiru</td>
-                    <td>000</td>
-                    <td>Panadura</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Hiruni</td>
-                    <td>000</td>
-                    <td>Kaluthara</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Thathsarani</td>
-                    <td>000</td>
-                    <td>Colombo</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
                 </tr>
+
+
                 </tbody>
             </table>
-            <br>
-            <div>
-                <button id="viewList" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewAllCustomer" data-bs-whatever="@mdo">View All Customers</button>
-
-            </div>
-
-
+            <button id="ViewAllItem" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><box-icon name='list-ol'></box-icon>View All</button>
         </div>
 
-
-    </section>
-    <section>
-        <div class="modal fade" id="viewAllCustomer" tabindex="-1" aria-labelledby="viewCustomerLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="viewCustomerLabel">All Customers</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <section id="viewAllTable">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Salary</th>
-                                    <th scope="col">Address</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Lahiru</td>
-                                    <td>000</td>
-                                    <td>Panadura</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Hiruni</td>
-                                    <td>000</td>
-                                    <td>Kaluthara</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Thathsarani</td>
-                                    <td>000</td>
-                                    <td>Colombo</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="file/assets/webAssets/fontawesome-free-6.5.1-web/js/all.min.js"></script>
-
-
+    </div>
 </section>
 
 <section id="item-section">
-    <section id="title">
-        <div>
-            <h3 id="title_name">Store details</h3>
-        </div>
-    </section>
-    <section id="search_panel">
-        <div>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search Items" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <div id="button_section">
+    <h1>Item Page</h1>
+    <div id="main-div" class="main-div">
+        <div id="first" class="first">
 
-            <button id="registerBtn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">New Item</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button id="Add-btn" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModall1" data-bs-whatever="@mdo"><box-icon name='plus-circle'></box-icon>Register</button>
+            <div class="modal fade" id="exampleModall1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" id="modelHeader">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Items</h1>
+                        <div class="modal-header" id="modelHeaderr">
+                            <h1 class="modal-title fs-5" id="exampleModalLabell">New Customer</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div id="inputMenu" class="modal-body">
+                        <div id="inputMenuu" class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Code:</label>
-                                    <input type="text" class="form-control" id="recipient-id">
+                                    <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                                    <input type="text" class="form-control" id="recipient-idd">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Name:</label>
-                                    <i class="fa-solid fa-file-signature"></i>
-                                    <input type="text" class="form-control" id="recipient-name">
+                                    <label for="recipient-name" class="col-form-label">Customer Name:</label>
+                                    <input type="text" class="form-control" id="recipient-namee">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Price:</label>
-                                    <i class="fa-solid fa-barcode"></i>
-                                    <input type="text" class="form-control" id="recipient-address">
+                                    <label for="recipient-name" class="col-form-label">Customer Address:</label>
+                                    <input type="text" class="form-control" id="recipient-addresss">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Quantity:</label>
-                                    <i class="fa-solid fa-boxes-packing"></i>
-                                    <input type="text" class="form-control" id="recipient-salary">
+                                    <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                    <input type="text" class="form-control" id="recipient-salaryy">
                                 </div>
 
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button id="registerBtn1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="closeBtn" type="button" class="btn btn-primary">Save</button>
+                            <button id="registerBtnn1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="closeBtnn" type="button" class="btn btn-primary">Register</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="editBtn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">Edit Details</button>
-            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button id="editBtnn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModall1" data-bs-whatever="@mdo"><box-icon name='edit'></box-icon>Edit Details</button>
+            <div class="modal fade" id="exampleModalll1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" id="modelHeader1">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel1">New Item</h1>
+                        <div class="modal-header" id="modelHeaderr1">
+                            <h1 class="modal-title fs-5" id="exampleModalLabell1">New Customer</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div id="inputMenu1" class="modal-body">
+                        <div id="inputMenuu1" class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Code:</label>
-                                    <input type="text" class="form-control" id="recipient-id1">
+                                    <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                                    <input type="text" class="form-control" id="recipient-idd1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Name:</label>
-                                    <input type="text" class="form-control" id="recipient-name1">
+                                    <label for="recipient-name" class="col-form-label">Customer Name:</label>
+                                    <input type="text" class="form-control" id="recipient-namee1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Price:</label>
-                                    <input type="text" class="form-control" id="recipient-address1">
+                                    <label for="recipient-name" class="col-form-label">Customer Address:</label>
+                                    <input type="text" class="form-control" id="recipient-addresss1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Item Quantity:</label>
-                                    <input type="text" class="form-control" id="recipient-salary1">
+                                    <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                    <input type="text" class="form-control" id="recipient-salaryy1">
                                 </div>
 
                             </form>
                         </div>
                         <div class="modal-footer">
 
-                            <button id="closeBtn1" type="button" class="btn btn-primary">Update</button>
+                            <button id="closeBtnn1" type="button" class="btn btn-primary">Update</button>
                             <button type="button" class="btn btn-danger">Delete</button>
-                            <button id="Update" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="Updatee" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
 
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
-    </section>
-    <br>
-    <section>
-        <div id="customerTable">
-            <table class="table">
+        <div>
+            <table class="table table-bordered border-primary">
                 <thead>
                 <tr>
-                    <th scope="col">Item Code</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Item price</th>
-                    <th scope="col">Item Quantity</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Salary</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td>Kiiri Samba</td>
-                    <td>1000</td>
-                    <td>20KG</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Baasmathi</td>
-                    <td>1200</td>
-                    <td>50kg</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>Suwadel</td>
-                    <td>900</td>
-                    <td>30kg</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
                 </tr>
+
+
                 </tbody>
             </table>
-            <br>
-            <div>
-                <button id="viewList" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewAllCustomer" data-bs-whatever="@mdo">View All Items</button>
-
-            </div>
-
-
+            <button id="ViewAllCustomer" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><box-icon name='list-ol'></box-icon>View All</button>
         </div>
 
-
-    </section>
-    <section>
-        <div class="modal fade" id="viewAllCustomer" tabindex="-1" aria-labelledby="viewCustomerLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="viewCustomerLabel">All Customers</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <section id="viewAllTable">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Item Code</th>
-                                    <th scope="col">Item Name</th>
-                                    <th scope="col">Item price</th>
-                                    <th scope="col">Item Quantity</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Kiiri Samba</td>
-                                    <td>1000</td>
-                                    <td>20KG</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Baasmathi</td>
-                                    <td>1200</td>
-                                    <td>50kg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Suwadel</td>
-                                    <td>900</td>
-                                    <td>30kg</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 </section>
 
 <section id="order-section">
-    <section id="title">
-        <div>
-            <h3 id="title_name">Order details</h3>
-        </div>
-    </section>
-    <section class="main-container">
-
-
-        <section>
-            <div id="invoice_details" class="invoice_details">
-                <div class="custom-card">
-                    <div class="card">
-                        <h5 class="card-header">Invoice Details</h5>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Order Id" aria-label="First name">
-                                </div>
-
-                                <div class="col-auto">
-                                    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                                    <select class="form-select" id="autoSizingSelect">
-                                        <option selected>customer...</option>
-                                        <option value="1">Lahiru</option>
-                                        <option value="2">Hiruni</option>
-                                        <option value="3">Rithma</option>
-                                    </select>
-                                </div>
-
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Customer ID" aria-label="Last name">
-                                </div>
-                                <form class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label">Name</label>
-                                        <input type="email" class="form-control" id="inputEmail4">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputEmail4" class="form-label">Salary</label>
-                                        <input type="email" class="form-control" id="inputEmail">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Address">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-        </section>
-        <section>
-            <div id="item_details" class="item_details" >
-                <div class="custom-card">
-                    <div class="card">
-                        <h5 class="card-header">Cart Details</h5>
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Item Code" aria-label="First name">
-                                </div>
-
-                                <div class="col-auto">
-                                    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                                    <select class="form-select" id="autoSizingSelect1">
-                                        <option selected>Items...</option>
-                                        <option value="1">Lahiru</option>
-                                        <option value="2">Hiruni</option>
-                                        <option value="3">Rithma</option>
-                                    </select>
-                                </div>
-
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Item Name" aria-label="Last name">
-                                </div>
-                                <form class="row g-3">
-                                    <div class="col-md-6">
-                                        <input type="email" class="form-control" id="inputEmail2" placeholder="Price">
-                                    </div>
-                                    <div class="col-md-6">
-
-                                        <input type="email" class="form-control" id="inputEmail1" placeholder="QtyOnHand">
-                                    </div>
-
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="inputAddress1" placeholder="Order Qty">
-                                    </div>
-                                    <button class="btn btn-outline-success" type="submit">Add Item</button>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-        </section>
-
-
-        <!--<section>
-            <div id="final" class="final">
-                <table class="table table-bordered border-primary">
-                    <thead>
-                    <tr>
-                        <th scope="col">Item Code</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Item price</th>
-                        <th scope="col">Item Quantity</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Kiiri Samba</td>
-                        <td>1000</td>
-                        <td>20KG</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Baasmathi</td>
-                        <td>1200</td>
-                        <td>50kg</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Suwadel</td>
-                        <td>900</td>
-                        <td>30kg</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </section>-->
-    </section>
-    <section class="total_form1">
-        <div id="total_form" class="total_form">
-            <h3>Total: 1300.00</h3>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Cash:</label>
-                <input type="text" class="form-control" id="cash" placeholder="0.00">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Discount:</label>
-                <input type="text" class="form-control" id="Discount" placeholder="0.00">
-            </div>
-            <!--<div class="col-12">
-                <label for="inputAddress" class="form-label">Order Qty:</label>
-                <input type="text" class="form-control" id="Balance" placeholder="Order Qty">
-            </div>-->
-            <br>
-            <button id="purchase" class="btn btn-outline-success" type="submit">Purchase
-                <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-        </div>
-    </section>
+    <h1>Order Section</h1>
+    <div class="input-group">
+        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+    </div>
 </section>
 
-<script src="file/assets/lib/jquery-3.7.1.min.js"></script>
-<script src="script/js.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script src="model/script/js/jquery.min.js"></script>
+<script src="model/script/js/popper.js"></script>
+<script src="model/script/js/bootstrap.min.js"></script>
+<script src="model/script/js/main.js"></script>
+<script src="model/script/js/js.js"></script>
 
-<script src="file/assets/webAssets/fontawesome-free-6.5.1-web/js/all.min.js"></script>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
+
