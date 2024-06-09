@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
 <body>
 <div>
     <div class="wave"></div>
@@ -274,19 +275,19 @@
                         <div id="inputMenuu" class="modal-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer ID:</label>
+                                    <label for="recipient-name" class="col-form-label">Item code:</label>
                                     <input type="text" class="form-control" id="recipient-idd">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Name:</label>
+                                    <label for="recipient-name" class="col-form-label">Item Name:</label>
                                     <input type="text" class="form-control" id="recipient-namee">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Address:</label>
+                                    <label for="recipient-name" class="col-form-label">Item Price:</label>
                                     <input type="text" class="form-control" id="recipient-addresss">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                    <label for="recipient-name" class="col-form-label">Item Quantity:</label>
                                     <input type="text" class="form-control" id="recipient-salaryy">
                                 </div>
 
@@ -381,10 +382,95 @@
 
 
 <section id="order-section">
-    <h1>Order Section</h1>
-    <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+    <div class="container px-4 text-center">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-3">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputOrderId">Order Id</label>
+                                <input type="text" class="form-control" id="inputOrderId" placeholder="Order Id">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Date</label>
+                                <input type="date" class="form-control" id="inputDate" placeholder="Date">
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="dropdown col-md-6">
+                                <label for="inputPassword4">Customer:</label>
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Customer:
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Customer ID:</label>
+                                <input type="text" class="form-control" id="inputPassword4" placeholder="Customer ID">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputOrderId">Name :</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Order Id">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Salary :</label>
+                                <input type="date" class="form-control" id="inputSalary" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">Address :</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="Address">
+                        </div>
+
+
+
+                    </form>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="p-3">
+                    <div class="form-row">
+
+                        <div class="dropdown col-md-6">
+                            <label for="inputPassword4">Item Code :</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Slect Item Code
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Item code :</label>
+                            <input type="text" class="form-control" id="inputText" placeholder="Item Code">
+                        </div>
+                        <div class="form-row">
+                            <label for="inputPassword4">Item Name :</label>
+                            <input type="text" class="form-control" id="inputItemName" placeholder="Item Name">
+
+                            <label for="inputPassword4">Item Price :</label>
+                            <input type="text" class="form-control" id="inputItemPrice" placeholder="Item Price">
+
+                            <label for="inputPassword4">QtyOnHand :</label>
+                            <input type="text" class="form-control" id="inputQntOnHand" placeholder="QtyOnHand">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
