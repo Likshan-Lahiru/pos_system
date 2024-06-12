@@ -166,16 +166,18 @@
                                     <input type="text" class="form-control" id="recipient-address">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Salary:</label>
-                                    <input type="text" class="form-control" id="recipient-salary">
+                                    <label for="recipient-name" class="col-form-label">Customer Phone:</label>
+                                    <input type="text" class="form-control" id="recipient-phone">
+                                </div>
+                                <div class="modal-footer">
+                                    <button  id="register" type="button" class="btn btn-primary" data-bs-dismiss="modal">Register</button>
+                                    <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="reset" id="student-reset" class="btn btn-warning">Reset</button>
                                 </div>
 
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button id="registerBtn1" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="closeBtn" type="button" class="btn btn-primary">Register</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -202,7 +204,7 @@
                                     <input type="text" class="form-control" id="recipient-address1">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Salary:</label>
+                                    <label for="recipient-name" class="col-form-label">Customer Phone:</label>
                                     <input type="text" class="form-control" id="recipient-salary1">
                                 </div>
 
@@ -220,43 +222,28 @@
                 </div>
             </div>
         </div>
-        <div>
-            <table class="table table-bordered border-primary">
+        <div id="customer-model">
+            <table id="customer-table" class="table table-bordered border-primary">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Salary</th>
+                    <th scope="col">Phone</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
+                <tbody id="customer-tbl-tBody">
+
 
 
                 </tbody>
             </table>
-            <button id="ViewAllItem" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><box-icon name='list-ol'></box-icon>View All</button>
+            <button id="viewList" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewAllCustomer" data-bs-whatever="@mdo">View All Customers</button>
+
         </div>
 
     </div>
+
 </section>
 
 <section id="item-section">
@@ -511,9 +498,6 @@
                         <td>3</td>
                         <td>600</td>
                     </tr>
-
-
-
                     </tbody>
                 </table>
 
@@ -527,11 +511,12 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="model/script/js/jquery.min.js"></script>
-<script src="model/script/js/popper.js"></script>
-<script src="model/script/js/bootstrap.min.js"></script>
-<script src="model/script/js/main.js"></script>
-<script src="model/script/js/js.js"></script>
+<script src="assets/script/js/jquery.min.js"></script>
+<script src="assets/script/js/popper.js"></script>
+<script src="assets/script/js/bootstrap.min.js"></script>
+<script src="assets/script/js/main.js"></script>
+<script src="assets/script/js/js.js"></script>
+<script type="module" src="controller/customer.js"></script>
 
 </body>
 
