@@ -54,3 +54,8 @@
         background-clip: text;
     }
 }
+#main-container{
+    padding: 0% 0% 0%;
+    border: 0;
+    margin: 0;
+}
