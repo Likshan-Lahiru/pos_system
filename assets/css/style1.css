@@ -98,3 +98,10 @@
     width: 50rem;
     background-color: #ff253a;
 }
+.order_container{
+    color: white;
+    background: rgba(0, 0, 0, 0.36);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
+}
