@@ -103,7 +103,7 @@ addCartBtn.on('click', () => {
             clearItemSection();
         }
     } else {
-        alert("not enough quantity in stock");
+        customAlert("බඩු ඉවරයි");
     }
 
 });
@@ -221,10 +221,10 @@ order_btn.on('click', () => {
             console.log(orderDetails);
 
         } else {
-            alert("please add items to cart");
+            customAlert("please add items to cart");
         }
     } else {
-        alert("Payment is not enough");
+        customAlert("Payment is not enough");
     }
 
 });
