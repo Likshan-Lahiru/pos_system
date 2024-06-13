@@ -1,5 +1,8 @@
 ### Eshan Enterprises POS System
 
+<img src="https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_920,h_1083/https://www.teamworkcommerce.com/wp-content/uploads/2022/07/sale-gif.gif">
+
+
 Site Map :- https://www.gloomaps.com/cTWM6xXXFa
 
 Wire frame link:-https://drive.google.com/file/d/1K2i-oxzP6ahsw13xqxXi6FyE-eZq_UF7/view?usp=sharing
