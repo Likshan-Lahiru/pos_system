@@ -1,5 +1,6 @@
 import OrderModel from "../model/OrderModel.js";
-import {customers, items, orders} from "../db/dataBase.js";
+import {customers, items, orderDetails, orders} from "../db/dataBase.js";
+import {OrderDetailModel} from "../model/OrderDetailModel.js";
 let cart = [];
 
 const customerId = $('#customerIdDRD');
@@ -17,6 +18,8 @@ const discount = $('#inputItemDiscount');
 const addCartBtn = $('#addCartBtn');
 const cash = $('#inputItemCash');
 const balance = $('#inputQntOnBalance');
+const order_id = $('orderId');
+const order_btn = $('#order_btn');
 
 initialize()
 
@@ -176,6 +179,52 @@ $('tbody').on('click', '.cart_remove', function() {
         cart.splice(index, 1);
         loadCart();
         setTotalValues();
+    }
+
+});
+
+order_btn.on('click', () => {
+
+    let orderId = order_id.val();
+    let order_date = orderDate.val();
+    let customer_Id = customerId.val();
+    let subTotal = parseFloat(sub_total.text());
+    let cashAmount = parseFloat(cash.val());
+    let discountValue = parseInt(discount.val()) || 0;
+
+    if (cashAmount >= subTotal) {
+        if (cart.length !== 0) {
+
+            let order = new OrderModel(orderId, order_date, discountValue, subTotal, customer_Id);
+            orders.push(order);
+            /*loadOrderTable();*/
+
+            cart.forEach((cart_item) => {
+                let order_detail = new OrderDetailModel(orderId, cart_item.itemId, cart_item.qty, cart_item.unitPrice, cart_item.total);
+                orderDetails.push(order_detail);
+            });
+            cart.splice(0, cart.length);
+            loadCart();
+            clearItemSection();
+            customerId.val('select the customer');
+            customerName.val('');
+            discount.val('');
+            cash.val('');
+            balance.val('');
+            net_total.text('0/=');
+            sub_total.text('0/=');
+
+
+            alert("Order is placed successfully");
+            initialize();
+
+            console.log(orderDetails);
+
+        } else {
+            alert("please add items to cart");
+        }
+    } else {
+        alert("Payment is not enough");
     }
 
 });

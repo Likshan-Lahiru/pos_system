@@ -9,7 +9,7 @@ initialize()
 function initialize() {
     loadTable();
 
-    // Determine the next customer ID
+
     if (customers.length == 0) {
         $('#customerId').val(1);
     } else {
@@ -17,7 +17,6 @@ function initialize() {
         $('#customerId').val(nextCustomerId);
     }
 
-    // Set customer IDs
     setCustomerIds(customers);
 }
 
