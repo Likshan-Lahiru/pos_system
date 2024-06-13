@@ -2,30 +2,42 @@ $("#home-section").css({display:'block'});
 $("#customer-section").css({display: 'none'});
 $("#item-section").css({display: 'none'});
 $("#order-section").css({display: 'none'});
+$("#order-details-section").css({display: 'none'});
 
 $("#customer-btn").on('click',()=>{
     $("#customer-section").css({display:'block'});
     $("#item-section").css({display:'none'});
     $("#home-section").css({display:'none'});
     $("#order-section").css({display: 'none'});
+    $("#order-details-section").css({display: 'none'});
 });
 $("#item-btn").on('click',()=>{
     $("#item-section").css({display:'block'});
     $("#customer-section").css({display:'none'});
     $("#home-section").css({display:'none'});
     $("#order-section").css({display: 'none'});
+    $("#order-details-section").css({display: 'none'});
 });
 $("#store-btn").on('click',()=>{
     $("#customer-section").css({display:'none'});
     $("#item-section").css({display:'none'});
     $("#home-section").css({display:'none'});
     $("#order-section").css({display: 'block'});
+    $("#order-details-section").css({display: 'none'});
 });
 $("#home-btn").on('click',()=>{
     $("#home-section").css({display:'block'});
     $("#customer-section").css({display:'none'});
     $("#item-section").css({display:'none'});
     $("#order-section").css({display: 'none'});
+    $("#order-details-section").css({display: 'none'});
+});
+$("#order-detail").on('click',()=>{
+    $("#home-section").css({display:'none'});
+    $("#customer-section").css({display:'none'});
+    $("#item-section").css({display:'none'});
+    $("#order-section").css({display: 'none'});
+    $("#order-details-section").css({display: 'block'});
 });
 setInterval(function() {
     document.getElementById('totalCustomers').innerText = Math.floor(Math.random() * 1000); // Randomize for demo

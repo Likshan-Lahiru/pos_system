@@ -71,11 +71,12 @@
                     <li id="customer-btn" class="nav-item"><a href="#" class="nav-link">Customer</a></li>
                     <li id="item-btn" class="nav-item"><a href="#" class="nav-link">Store</a></li>
                     <li id="store-btn" class="nav-item"><a href="#" class="nav-link">Orders</a></li>
+                    <li id="order-detail" class="nav-item"><a href="#" class="nav-link">Orders Details</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- END nav -->
+
 
 </section>
 
@@ -451,6 +452,79 @@
             </div>
         </div>
     </div>
+</section>
+
+<section id="order-details-section">
+
+    <section id="order_details">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col">
+                    <h3 class="header">Order Detail</h3>
+                </div>
+            </div>
+            <div class="order_container">
+                <div class="row">
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <form>
+                            <div class="mb-3">
+                                <label for="order_detail_id" class="form-label">Order Id</label>
+                                <input type="text" class="form-control" id="order_detail_id" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="order_detail_customer_id" class="form-label">Customer Id</label>
+                                <input type="text" class="form-control" id="order_detail_customer_id" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="order_details_date" class="form-label">Order Date</label>
+                                <input type="date" class="form-control" id="order_details_date" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="order_details_discount" class="form-label">Discount</label>
+                                <input type="text" class="form-control" id="order_details_discount" disabled>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div id="order_detail_search" class="search mb-4 mt-4 d-flex flex-row align-items-end">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" class="form-control" placeholder="Search" id="order_search">
+
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">Order Id</th>
+                                <th scope="col">Customer Id</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                            </thead>
+                            <tbody id="order_table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order_container mt-3">
+                <div class="row">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Item Id</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order_detail_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

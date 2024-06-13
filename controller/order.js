@@ -1,11 +1,11 @@
 import OrderModel from "../model/OrderModel.js";
 import {customers, items, orderDetails, orders} from "../db/dataBase.js";
 import {OrderDetailModel} from "../model/OrderDetailModel.js";
+import {loadOrderTable} from "./orderDetails.js";
 let cart = [];
 
 const customerId = $('#customerIdDRD');
 const item_Id = $('#itemIdDRD');
-const orderId = $('#orderId');
 const customerName = $('#customerName');
 const itemName = $('#ItemName1');
 const qtyOnHand = $('#qtyOnHand');
@@ -18,16 +18,16 @@ const discount = $('#inputItemDiscount');
 const addCartBtn = $('#addCartBtn');
 const cash = $('#inputItemCash');
 const balance = $('#inputQntOnBalance');
-const order_id = $('orderId');
+const order_id = $('#orderId');
 const order_btn = $('#order_btn');
 
 initialize()
 
 function initialize(){
     if (orders.length === 0) {
-        orderId.val(1);
+        order_id.val(1);
     } else {
-        orderId.val(parseInt(orders[orders.length - 1].orderId) + 1);
+        order_id.val(parseInt(orders[orders.length - 1].orderId) + 1);
     }
 }
 customerId.on('input', () => {
@@ -197,7 +197,7 @@ order_btn.on('click', () => {
 
             let order = new OrderModel(orderId, order_date, discountValue, subTotal, customer_Id);
             orders.push(order);
-            /*loadOrderTable();*/
+            loadOrderTable();
 
             cart.forEach((cart_item) => {
                 let order_detail = new OrderDetailModel(orderId, cart_item.itemId, cart_item.qty, cart_item.unitPrice, cart_item.total);
