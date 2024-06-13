@@ -52,6 +52,7 @@ $("#customerButtonUpdate").on("click", function() {
     customerObj.address = customerAddress;
     customerObj.phone = customerPhone;
 
+
     loadTable();
     $('#customerButtonReset').click();
 
