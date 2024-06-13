@@ -54,8 +54,33 @@
         background-clip: text;
     }
 }
+/*
 #main-container{
     padding: 0% 1% 0%;
     border: 0;
-    margin: 1% 10% 5%;
+    margin: 1% 1% 1%;
+}
+*/
+
+.col-form-label{
+    color: black;
+}
+/*#customer-section{
+    padding: 0% 0% 0%;
+    border: 0;
+    margin: 0% 0% 0%;
+
+}*/
+.main-div{
+    padding: 0% 0% 0%;
+    border: 0;
+    margin: 0% 0% 0%;
+}
+#searchCustomer{
+    width: 20rem;
+
+
+}
+#search{
+
 }

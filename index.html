@@ -36,8 +36,8 @@
                     <div class="col-md-6 d-md-flex justify-content-end mb-md-0 mb-3">
                         <form action="#" class="searchform order-lg-last">
                             <div class="form-group d-flex">
-                                <input type="text" class="form-control pl-3" placeholder="Search">
-                                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>
+                                <!--<input type="text" class="form-control pl-3" placeholder="Search">
+                                <button type="submit" placeholder="" class="form-control search"><span class="fa fa-search"></span></button>-->
                             </div>
                         </form>
                     </div>
@@ -141,106 +141,92 @@
 
 <section id="customer-section">
     <div class="main-div">
-        <div class="first">
-
-            <button id="register-btn" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><box-icon name='plus-circle'></box-icon>Register</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" id="modelHeader">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New Customer</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div id="inputMenu" class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer ID:</label>
-                                    <input type="text" class="form-control" id="recipient-id">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Name:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Address:</label>
-                                    <input type="text" class="form-control" id="recipient-address">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Phone:</label>
-                                    <input type="text" class="form-control" id="recipient-phone">
-                                </div>
-                                <div class="modal-footer">
-                                    <button  id="register" type="button" class="btn btn-primary" data-bs-dismiss="modal">Register</button>
-                                    <button id="closeBtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="reset" id="student-reset" class="btn btn-warning">Reset</button>
-                                </div>
-
-                            </form>
-                        </div>
+        <div class="container overflow-hidden text-center">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3">
 
                     </div>
                 </div>
-            </div>
-            <button id="editBtn" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo"><box-icon name='edit'></box-icon>Edit Details</button>
-            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" id="modelHeader1">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel1">New Customer</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div id="inputMenu1" class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer ID:</label>
-                                    <input type="text" class="form-control" id="recipient-id1">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Name:</label>
-                                    <input type="text" class="form-control" id="recipient-name1">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Address:</label>
-                                    <input type="text" class="form-control" id="recipient-address1">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Customer Phone:</label>
-                                    <input type="text" class="form-control" id="recipient-salary1">
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button id="closeBtn1" type="button" class="btn btn-primary">Update</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                            <button id="Update" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+                <div class="col">
+                    <div class="p-3">
+                        <div class="p-3" id="search">
 
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="customer-model">
-            <table id="customer-table" class="table table-bordered border-primary">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phone</th>
-                </tr>
-                </thead>
-                <tbody id="customer-tbl-tBody">
 
 
+        <div class="container px-4 text-center">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3">
+                        <form>
 
-                </tbody>
-            </table>
-            <button id="viewList" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#viewAllCustomer" data-bs-whatever="@mdo">View All Customers</button>
+                            <div class="mb-3">
+                                <label  class="col-form-label">Customer ID :</label>
+                                <input type="text" class="form-control" id="customerId">
+                            </div>
+                            <div class="mb-3">
+                                <label  class="col-form-label">Customer Name :</label>
+                                <input type="text" class="form-control" id="newCustomerName">
 
+                            </div>
+                            <div class="mb-3">
+                                <label  class="col-form-label">Customer Address:</label>
+                                <input type="text" class="form-control" id="customerAddress">
+                            </div>
+                            <div class="mb-3">
+                                <label  class="col-form-label">Customer Phone:</label>
+                                <input type="text" class="form-control" id="customerPhone">
+                            </div>
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col">
+                                        <button  id="register1" type="button" class="btn btn-primary" >Register</button>
+                                    </div>
+                                    <div class="col">
+                                        <button id="customerButtonUpdate" type="button" class="btn btn-warning">Update</button>
+
+                                    </div>
+                                    <div class="col">
+                                        <button id="customerButtonDelete" type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                    <div class="col">
+                                        <button type="reset" id="customerButtonReset" class="btn btn-info">Reset</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="p-3">
+                        <div id="customer-model">
+                            <table id="customer-table" class="table table-bordered border-primary">
+                                <thead>
+                                <input type="search" class="form-control" placeholder="Search" id="searchCustomer">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Phone</th>
+                                </tr>
+                                </thead>
+                                <tbody id="customer-tbl-tBody">
+
+                                </tbody>
+                            </table></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
 
     </div>
 
@@ -249,7 +235,7 @@
 <section id="item-section">
     <h1>Item Page</h1>
     <div id="main-div" class="main-div">
-        <div id="first" class="first">
+    <!--    <div id="first" class="first">
 
             <button id="Add-btn" type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModall1" data-bs-whatever="@mdo"><box-icon name='plus-circle'></box-icon>Register</button>
             <div class="modal fade" id="exampleModall1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -327,7 +313,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
+
         <div>
             <table class="table table-bordered border-primary">
                 <thead>
