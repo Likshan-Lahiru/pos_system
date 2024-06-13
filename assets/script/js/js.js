@@ -39,11 +39,7 @@ $("#order-detail").on('click',()=>{
     $("#order-section").css({display: 'none'});
     $("#order-details-section").css({display: 'block'});
 });
-setInterval(function() {
-    document.getElementById('totalCustomers').innerText = Math.floor(Math.random() * 1000); // Randomize for demo
-    document.getElementById('totalItems').innerText = Math.floor(Math.random() * 2000); // Randomize for demo
-    document.getElementById('totalOrders').innerText = Math.floor(Math.random() * 500); // Randomize for demo
-}, 1000);
+
 
 setInterval(function() {
     var now = new Date();
