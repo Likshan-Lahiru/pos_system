@@ -105,3 +105,10 @@
     border-radius: 20px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
 }
+h1.topic {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: -webkit-linear-gradient(#0e0907, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
