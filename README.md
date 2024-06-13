@@ -25,7 +25,7 @@ Eshan Enterprises POS System is a simple yet efficient solution for managing cus
 #### How to Use
 1. Clone the repository to your local machine.
 2. Open the project folder.
-3. Open the `Customer.html` file in your web browser.
+3. Open the `index.html` file in your web browser.
 4. Use the navigation menu to access different sections like Customer Management, Items Management, and Bill Management.
 5. Start managing your customers, items, and bills seamlessly!
 
