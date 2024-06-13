@@ -5,7 +5,7 @@ import {customers, orders} from "../db/dataBase.js";
 const customerId = $('#customerIdDRD');
 const itemId = $('#itemIdDRD');
 const orderId = $('#orderId');
-const customerName = $('#customer_name');
+const customerName = $('#customerName');
 
 initialize()
 
@@ -20,7 +20,8 @@ customerId.on('input', () => {
     console.log("set cmb box value")
 
     if (customerId.val() !== 'select the customer'){
-
+       var customerNamess = customers[customerId.val() - 1].name;
+        console.log(customerNamess)
         customerName.val(customers[customerId.val() - 1].name);
 
     }else{
