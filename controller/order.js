@@ -1,7 +1,32 @@
+import OrderModel from "../model/OrderModel.js";
+import {customers, orders} from "../db/dataBase.js";
 
 
 const customerId = $('#customerIdDRD');
 const itemId = $('#itemIdDRD');
+const orderId = $('#orderId');
+const customerName = $('#customer_name');
+
+initialize()
+
+function initialize(){
+    if (orders.length === 0) {
+        orderId.val(1);
+    } else {
+        orderId.val(parseInt(orders[orders.length - 1].orderId) + 1);
+    }
+}
+customerId.on('input', () => {
+    console.log("set cmb box value")
+
+    if (customerId.val() !== 'select the customer'){
+
+        customerName.val(customers[customerId.val() - 1].name);
+
+    }else{
+        customerName.val('');
+    }
+});
 
 export function setCustomerIds(data) {
     customerId.empty();
