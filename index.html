@@ -377,18 +377,18 @@
                             </div>
                             <div class="col col-lg-6 col-md-12 col-sm-12 col-12">
                                 <div>
-                                    <label for="desc" class="form-label">Item Description</label>
-                                    <input type="text" class="form-control" id="desc" disabled>
+                                    <label for="ItemName1" class="form-label">Item Name</label>
+                                    <input type="text" class="form-control" id="ItemName1" disabled>
                                 </div>
                                 <div>
-                                    <label for="unit_price" class="form-label">Unit Price</label>
-                                    <input type="number" class="form-control" id="unit_price" disabled>
+                                    <label for="unitPrice" class="form-label">Unit Price</label>
+                                    <input type="number" class="form-control" id="unitPrice" disabled>
                                 </div>
 
                             </div>
                         </div>
                         <div class="row justify-content-center mt-3 d-flex">
-                            <button class="order_btn"></i>Add to Cart</button>
+                            <button id="addCartBtn"  class=""></i>Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -407,8 +407,8 @@
                                         <label >Cash :</label>
                                         <input type="text" class="form-control" id="inputItemCash" placeholder="Cash">
 
-                                        <label >discount :</label>
-                                        <input type="number" class="form-control" id="inputItemDiscount" placeholder="discount">
+                                        <label >discount (%) :</label>
+                                        <input type="number" class="form-control" id="inputItemDiscount" placeholder="discount:">
 
                                         <label >Balance :</label>
                                         <input type="text" class="form-control" id="inputQntOnBalance" placeholder="Balance">
@@ -418,8 +418,10 @@
                             <div class="col">
                                 <div class="p-3">
                                     <label >Net Total :</label>
+                                    <h2 id="netTotal"></h2>
                                     <br>
                                     <label >Sub Total :</label>
+                                    <h2 id="subTotal"></h2>
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-3 d-flex">
@@ -431,25 +433,17 @@
                 <div class="order_container mt-3">
                     <div class="container">
                         <h4>Cart</h4>
-                        <table class="table table-bordered border-primary">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Item Code</th>
-                                <th scope="col">Item Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Item Id</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Qty</th>
                                 <th scope="col">Total</th>
+                                <th scope="col">Remove</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Ginder</td>
-                                <td>200</td>
-                                <td>3</td>
-                                <td>600</td>
-                            </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
