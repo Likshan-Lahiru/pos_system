@@ -1,14 +1,26 @@
 import CustomerModel from "../model/customerModel.js";
 import {customers} from "../db/dataBase.js";
+import {setCustomerIds} from '../controller/order.js';
 
 var recordIndex;
 
 initialize()
 
 function initialize() {
-        loadTable();
+    loadTable();
 
+    // Determine the next customer ID
+    if (customers.length == 0) {
+        $('#customerId').val(1);
+    } else {
+        var nextCustomerId = parseInt(customers[customers.length - 1].id) + 1;
+        $('#customerId').val(nextCustomerId);
+    }
+
+    // Set customer IDs
+    setCustomerIds(customers);
 }
+
 
 function loadTable(){
 
@@ -37,7 +49,9 @@ $('#register1').on('click',()=>{
     customers.push(customer);
 
     loadTable();
+
     $('#customerButtonReset').click();
+    initialize();
 
 })
 $("#customerButtonUpdate").on("click", function() {

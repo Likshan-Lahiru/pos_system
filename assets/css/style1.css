@@ -84,3 +84,17 @@
 #search{
 
 }
+.orderrrr{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+#order-section{
+    padding: 1% 5% 5%;
+}
+#order-customer-details{
+    width: 50rem;
+    background-color: #ff253a;
+}

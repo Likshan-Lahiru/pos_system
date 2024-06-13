@@ -1,11 +1,19 @@
 import ItemModel from '../model/ItemModel.js';
-import {customers, items} from '../db/dataBase.js';
+import { items} from '../db/dataBase.js';
+import {setItemIds} from '../controller/order.js';
 
 var recordIndex;
 
 initialize()
 
 function initialize() {
+    if (items.length === 0) {
+        $('#ItemId').val(1);
+    } else {
+        $('#ItemId').val(parseInt(items[items.length-1].itemCode) + 1);
+    }
+    setItemIds(items)
+
     loadTable();
 
 }
@@ -38,6 +46,7 @@ $('#newItem').on('click', ()=>{
 
    loadTable();
    $('#item-reset').click();
+    initialize();
 
 });
 
