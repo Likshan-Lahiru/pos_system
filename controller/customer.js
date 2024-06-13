@@ -30,8 +30,6 @@ $('#register1').on('click',()=>{
     var customerName = $('#newCustomerName').val();
     var customerAddress = $('#customerAddress').val();
     var customerPhone = $('#customerPhone').val();
-    console.log(customerPhone)
-
 
     let customer = new CustomerModel(
         customerId,customerName,customerAddress,customerPhone
