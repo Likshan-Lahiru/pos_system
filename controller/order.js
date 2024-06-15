@@ -21,6 +21,8 @@ const balance = $('#inputQntOnBalance');
 const order_id = $('#orderId');
 const order_btn = $('#order_btn');
 
+const regexNumber = /^\d+$/
+
 initialize()
 
 function initialize(){
@@ -82,6 +84,12 @@ addCartBtn.on('click', () => {
     let qty = qtyOnHand.val();
     let total = unitPrice * orderQTY;
 
+    if (orderQTY==""){
+        customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
+    }else if (!regexNumber.test(orderQTY)) {
+        customAlert("Please enter a valid Qty!",'assets/alert/alert-blink.gif');
+    }
+
     if (qty >= orderQTY) {
         let cartItemIndex = cart.findIndex(cartItem => cartItem.itemId === itemId);
         if (cartItemIndex < 0) {
@@ -103,7 +111,7 @@ addCartBtn.on('click', () => {
             clearItemSection();
         }
     } else {
-        customAlert("බඩු ඉවරයි");
+        customAlert("not enough quantity in stock",'assets/alert/alert-blink.gif');
     }
 
 });
@@ -215,16 +223,16 @@ order_btn.on('click', () => {
             sub_total.text('0/=');
 
 
-            alert("Order is placed successfully");
+            customAlert("Order is placed successfully",'assets/alert/4a10e39ee8325a06daf00881ac321b2f.gif');
             initialize();
 
             console.log(orderDetails);
 
         } else {
-            customAlert("please add items to cart");
+            customAlert("please add items to cart",'assets/alert/alert-blink.gif');
         }
     } else {
-        customAlert("Payment is not enough");
+        customAlert("Payment is not enough",'assets/alert/noMoney.gif');
     }
 
 });

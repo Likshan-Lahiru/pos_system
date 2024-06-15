@@ -55,7 +55,7 @@ setInterval(function() {
     document.getElementById('liveCalendar').innerText = dateString;
 }, 1000);
 
-function customAlert(message) {
+function customAlert(message, gifSrc) {
     // Create the outer overlay div
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
@@ -84,6 +84,13 @@ function customAlert(message) {
     msgParagraph.textContent = message;
     msgParagraph.style.margin = '0 0 20px';
 
+    // Create the GIF image element
+    const gifImage = document.createElement('img');
+    gifImage.src = gifSrc;
+    gifImage.style.maxWidth = '100%';
+    gifImage.style.height = 'auto';
+    gifImage.style.marginBottom = '20px';
+
     // Create the close button
     const closeButton = document.createElement('button');
     closeButton.textContent = 'OK';
@@ -99,8 +106,11 @@ function customAlert(message) {
         document.body.removeChild(overlay);
     });
 
-    // Append the message and button to the alert box
+    // Append the message, GIF, and button to the alert box
     alertBox.appendChild(msgParagraph);
+    if (gifSrc) {
+        alertBox.appendChild(gifImage);
+    }
     alertBox.appendChild(closeButton);
 
     // Append the alert box to the overlay

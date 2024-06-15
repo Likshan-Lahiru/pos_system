@@ -2,6 +2,8 @@ import ItemModel from '../model/ItemModel.js';
 import { items} from '../db/dataBase.js';
 import {setItemIds} from '../controller/order.js';
 
+const regexPrice = /^\d+$/
+
 var recordIndex;
 
 initialize()
@@ -38,15 +40,24 @@ $('#newItem').on('click', ()=>{
    var itemName = $('#ItemName').val();
    var itemPrice = $('#ItemPrice').val();
    var itemQty = $('#ItemQty').val();
-    console.log(itemCode)
 
-   let item = new ItemModel(itemCode, itemName, itemPrice, itemQty
-   );
-   items.push(item);
+    if (itemCode == "" || itemName == "" || itemPrice == "" || itemQty == "") {
+        customAlert("Please fill all the fields");
+    }else if (!regexPrice.test(itemPrice)) {
+        customAlert("Please enter a valid price!",'assets/alert/alert-blink.gif');
+    }else if (!regexPrice.test(itemQty)) {
+        customAlert("Please enter a valid Qty!",'assets/alert/alert-blink.gif');
+    }  else {
+        let item = new ItemModel(itemCode, itemName, itemPrice, itemQty
+        );
+        items.push(item);
 
-   loadTable();
-   $('#item-reset').click();
-    initialize();
+        loadTable();
+        $('#item-reset').click();
+        initialize();
+    }
+
+
 
 });
 
@@ -57,18 +68,27 @@ $("#ItemUpdate").on("click", function() {
     var itemPrice = $('#ItemPrice').val();
     var itemQty = $('#ItemQty').val();
 
+    if ( itemName == "" || itemPrice == "" || itemQty == "") {
+        customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
+    }else if (!regexPrice.test(itemPrice)) {
+        customAlert("Please enter a valid price!",'assets/alert/alert-blink.gif');
+    }else if (!regexPrice.test(itemQty)) {
+        customAlert("Please enter a valid Qty!",'assets/alert/alert-blink.gif');
+    }  else {
+        let itemObj = items[recordIndex];
+
+        itemObj.itemName = itemName;
+        itemObj.itemPrice = itemPrice;
+        itemObj.itemQty = itemQty;
+
+
+        loadTable();
+        $('#item-reset').click();
+    }
 
 
 
-    let itemObj = items[recordIndex];
 
-    itemObj.itemName = itemName;
-    itemObj.itemPrice = itemPrice;
-    itemObj.itemQty = itemQty;
-
-
-    loadTable();
-    $('#item-reset').click();
 
 });
 

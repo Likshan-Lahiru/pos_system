@@ -2,6 +2,9 @@ import CustomerModel from "../model/customerModel.js";
 import {customers} from "../db/dataBase.js";
 import {setCustomerIds} from '../controller/order.js';
 
+const addressPattern = /^[a-zA-Z0-9\s,'-]*$/
+const mobilePattern = /^(?:\+94|94|0)?7\d{8}$/
+
 var recordIndex;
 
 initialize()
@@ -42,15 +45,23 @@ $('#register1').on('click',()=>{
     var customerAddress = $('#customerAddress').val();
     var customerPhone = $('#customerPhone').val();
 
-    let customer = new CustomerModel(
-        customerId,customerName,customerAddress,customerPhone
-    );
-    customers.push(customer);
+    if (customerId == "" || customerName == "" || customerAddress == "" || customerPhone == "") {
+       customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
+    } else if (!mobilePattern.test(customerPhone)) {
+        customAlert("Please enter a valid phone number",'assets/alert/alert-blink.gif');
+    } else {
+        let customer = new CustomerModel(
+            customerId,customerName,customerAddress,customerPhone
+        );
+        customers.push(customer);
 
-    loadTable();
+        loadTable();
 
-    $('#customerButtonReset').click();
-    initialize();
+        $('#customerButtonReset').click();
+        initialize();
+    }
+
+
 
 })
 $("#customerButtonUpdate").on("click", function() {
@@ -58,16 +69,23 @@ $("#customerButtonUpdate").on("click", function() {
     var newCustomerName = $('#newCustomerName').val();
     var customerAddress = $('#customerAddress').val();
     var customerPhone = $('#customerPhone').val();
+    if (customerId == "" || customerName == "" || customerAddress == "" || customerPhone == "") {
+        customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
+    } else if (!mobilePattern.test(customerPhone)) {
+        customAlert("Please enter a valid phone number",'assets/alert/alert-blink.gif');
+    } else {
+        let customerObj = customers[recordIndex];
 
-    let customerObj = customers[recordIndex];
-
-    customerObj.name = newCustomerName;
-    customerObj.address = customerAddress;
-    customerObj.phone = customerPhone;
+        customerObj.name = newCustomerName;
+        customerObj.address = customerAddress;
+        customerObj.phone = customerPhone;
 
 
-    loadTable();
-    $('#customerButtonReset').click();
+        loadTable();
+        $('#customerButtonReset').click();
+    }
+
+
 
 });
 
