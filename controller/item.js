@@ -188,31 +188,7 @@ $('#item-tbl-tBody').on('click','tr', function () {
     $('#ItemQty').val(qty);
 });
 
-$('#searchItem').on('input',function (){
-    console.log("search items")
-    var typedText = $('#searchItem').val();
-    items.map((item, index) => {
-        if (typedText === "") {
-            loadTable();
-        }
-        if (typedText === item.itemCode) {
 
-            var select_index = index;
-
-            $('#item-tbl-tBody').empty();
-
-            var record = `<tr>
-                <td class="item-code-value">${items[select_index].itemCode}</td>
-                <td class="item-name-value">${items[select_index].itemName}</td>
-                <td class="item-price-value">${items[select_index].itemPrice}</td>
-                <td class="item-qty-value">${items[select_index].itemQty}</td>
-            </tr>`;
-
-            $('#item-tbl-tBody').append(record);
-        }
-
-    })
-})
 
 $('#ItemDelete').on('click',  () => {
     var id = $('#ItemId').val();
@@ -243,3 +219,77 @@ $('#ItemDelete').on('click',  () => {
     },1000)
 
 })
+
+
+
+$("#searchItem").on("input", function() {
+    var typedText = $("#searchItem").val();
+
+    if (typedText.trim() === "") {
+        loadTable();
+    } else {
+        $.ajax({
+            url: "http://localhost:8080/pos/item",
+            type: "GET",
+            data: {"id": typedText},
+            success: (res) => {
+                console.log(res);
+
+                if (res) {
+                    try {
+                        let items;
+
+                        if (typeof res === 'string') {
+                            items = JSON.parse(res);
+                        } else {
+                            items = res;
+                        }
+                        console.log('Parsed items:', items);
+
+                        $('#item-tbl-tBody').empty();
+
+                        if (Array.isArray(items)) {
+                            items.forEach((item) => {
+                                var record = `<tr>
+                                    <td class="item-code-value">${item.id}</td>
+                                    <td class="item-name-value">${item.name}</td>
+                                    <td class="item-price-value">${item.unitPrice}</td>
+                                    <td class="item-qty-value">${item.qty}</td>
+                                </tr>`;
+                                $('#item-tbl-tBody').append(record);
+                            });
+                        } else if (typeof items === 'object') {
+                            var record = `<tr>
+                                <td class="item-code-value">${items.id}</td>
+                                <td class="item-name-value">${items.name}</td>
+                                <td class="item-price-value">${items.unitPrice}</td>
+                                <td class="item-qty-value">${items.qty}</td>
+                            </tr>`;
+                            $('#item-tbl-tBody').append(record);
+                        } else {
+                            console.warn('Unexpected response format');
+                            $('#item-tbl-tBody').append('<tr><td colspan="4">No items found</td></tr>');
+                        }
+                    } catch (e) {
+                        console.error('Error parsing JSON:', e);
+                        $('#item-tbl-tBody').empty();
+                        $('#item-tbl-tBody').append('<tr><td colspan="4">Error processing data</td></tr>');
+                    }
+                } else {
+                    console.warn('Received empty response from server.');
+                    $('#item-tbl-tBody').empty();
+                    $('#item-tbl-tBody').append('<tr><td colspan="4">No items found</td></tr>');
+                }
+            },
+            error: (res) => {
+                console.error('AJAX error:', res);
+                $('#item-tbl-tBody').empty();
+                $('#item-tbl-tBody').append('<tr><td colspan="4">Error retrieving data</td></tr>');
+            }
+        });
+    }
+});
+
+
+
+

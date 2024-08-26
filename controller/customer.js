@@ -182,29 +182,54 @@ $('#customer-tbl-tBody').on('click','tr', function () {
     $('#customerPhone').val(phone);
 });
 
+
+
 $("#searchCustomer").on("input", function() {
     var typedText = $("#searchCustomer").val();
-    customers.map((customer, index) => {
-        if (typedText == "") {
-            loadTable()
-        }
 
-        if (typedText == customer.id) {
-            var select_index = index;
+    if (typedText.trim() === "") {
+        loadTable();
+    } else {
+        $.ajax({
+            url: "http://localhost:8080/pos/customer",
+            type: "GET",
+            data: {"id": typedText},
+            success: (res) => {
+                console.log(res);
 
-            $('#customer-tbl-tBody').empty();
+                if (res) {
+                    try {
+                        let customer = JSON.parse(res);
+                        console.log(customer);
 
-            var record = `<tr>
-                <td class="customer-id-value">${customers[select_index].id}</td>
-                <td class="customer-name-value">${customers[select_index].name}</td>
-                <td class="customer-address-value">${customers[select_index].address}</td>
-                <td class="customer-phone-value">${customers[select_index].phone}</td>
-            </tr>`;
+                        $('#customer-tbl-tBody').empty();
 
-            $('#customer-tbl-tBody').append(record);
-        }
-    })
+                        var record = `<tr>
+                            <td class="cus-id-val">${customer.id}</td>
+                            <td class="cus-fname-val">${customer.name}</td>
+                            <td class="cus-address-val">${customer.address}</td>
+                            <td class="cus-contact-val">${customer.contact}</td>
+                        </tr>`;
+
+                        $('#customer-tbl-tBody').append(record);
+
+                    } catch (e) {
+                        console.error("Error parsing JSON:", e);
+                    }
+                } else {
+                    console.warn("Received empty response from server.");
+                    $('#customer-tbl-tBody').empty();
+                    $('#customer-tbl-tBody').append('<tr><td colspan="4">No customer found</td></tr>');
+                }
+            },
+            error: (res) => {
+                console.error("AJAX error:", res);
+            }
+        });
+    }
 });
+
+
 
 $('#customerButtonDelete').on('click',  () => {
 
