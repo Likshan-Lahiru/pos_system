@@ -213,3 +213,33 @@ $('#searchItem').on('input',function (){
 
     })
 })
+
+$('#ItemDelete').on('click',  () => {
+    var id = $('#ItemId').val();
+    console.log(id)
+    $.ajax({
+        url: "http://localhost:8080/pos/item?id=" + id,
+        type: "DELETE",
+        success: (res) => {
+            console.log(JSON.stringify(res));
+            Swal.fire({
+                title: JSON.stringify(res),
+                icon: "success"
+            });
+        },
+        error: (res) => {
+            console.error(res);
+            Swal.fire({
+                title: JSON.stringify(res),
+                icon: "error"
+            });
+        }
+    });
+
+    $('#item_reset').click();
+
+    setTimeout(() => {
+        initialize();
+    },1000)
+
+})

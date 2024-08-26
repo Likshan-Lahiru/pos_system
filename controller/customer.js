@@ -206,11 +206,34 @@ $("#searchCustomer").on("input", function() {
     })
 });
 
-$("#customerButtonDelete").on('click', () => {
-    customers.splice(recordIndex, 1);
-    loadTable();
-    $("#customerButtonReset").click();
-});
+$('#customerButtonDelete').on('click',  () => {
+
+    var id = $('#customerId').val();
+    $.ajax({
+        url: "http://localhost:8080/pos/customer?id=" + id,
+        type: "DELETE",
+        success: (res) => {
+            console.log(JSON.stringify(res));
+            Swal.fire({
+                title: JSON.stringify(res),
+                icon: "success"
+            });
+        },
+        error: (res) => {
+            console.error(res);
+            Swal.fire({
+                title: JSON.stringify(res),
+                icon: "error"
+            });
+        }
+    });
+    $('#customerButtonReset').click();
+
+    setTimeout(() => {
+        initialize();
+    },1000)
+})
+
 
 
 
