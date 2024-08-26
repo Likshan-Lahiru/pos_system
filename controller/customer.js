@@ -27,23 +27,48 @@ function initialize() {
 function loadTable(){
 
     $('#customer-tbl-tBody').empty();
-    customers.map((item, index)=>{
-        let record = `<tr>
-            <td class="customer-id-value">${item.id}</td>
-            <td class="customer-name-value">${item.name}</td>
-            <td class="customer-address-value">${item.address}</td>
-            <td class="customer-phone-value">${item.phone}</td>
-        </tr>`;
-        $('#customer-tbl-tBody').append(record)
-    })
+    let customersArray = [];
+
+    $.ajax({
+        url: "http://localhost:8080/pos/customer",
+        type: "GET",
+        data: {"all": "getAll"},
+        success: (res) => {
+            console.log(res);
+            customersArray = JSON.parse(res);
+            console.log(customersArray);
+
+            setCustomerIds(customersArray);
+
+            customersArray.map((customer, index) => {
+
+                var record = `<tr>
+                     <td class="customer-id-value">${customer.id}</td>
+                     <td class="customer-name-value">${customer.name}</td>
+                     <td class="customer-address-value">${customer.address}</td>
+                     <td class="customer-phone-value">${customer.contact}</td>
+                </tr>`;
+
+                $('#customer-tbl-tBody').append(record);
+            });
+
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
 }
 
 $('#register1').on('click',()=>{
 
     var customerId = $('#customerId').val();
     var customerName = $('#newCustomerName').val();
-    var customerAddress = $('#customerAddress').val();
-    var customerPhone = $('#customerPhone').val();
+    var customerAddress =$('#customerAddress').val();
+    var customerPhone =  $('#customerPhone').val();
+
+    console.log(customerId, customerName, customerAddress, customerPhone);
+
+
 
     if (customerId == "" || customerName == "" || customerAddress == "" || customerPhone == "") {
        customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
@@ -53,12 +78,27 @@ $('#register1').on('click',()=>{
         let customer = new CustomerModel(
             customerId,customerName,customerAddress,customerPhone
         );
-        customers.push(customer);
+        let jsonCustomer = JSON.stringify(customer);
+        console.log(jsonCustomer);
 
-        loadTable();
+        $.ajax({
+            url: "http://localhost:8080/pos/customer",
+            type: "POST",
+            data: jsonCustomer,
+            headers: { "Content-Type": "application/json" },
+            success: (res) => {
+                loadTable();
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "success"
+                });
+            },
+            error: (res) => {
+                console.error(res);
+            }
+        });
 
-        $('#customerButtonReset').click();
-        initialize();
     }
 
 
