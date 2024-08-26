@@ -71,38 +71,9 @@ $('#newItem').on('click', ()=>{
    var itemName = $('#ItemName').val();
    var itemPrice = $('#ItemPrice').val();
    var itemQty = $('#ItemQty').val();
-    let item = new ItemModel(itemCode, itemName, itemPrice, itemQty
-    );
-    let jsonItem = JSON.stringify(item);
-
-    console.log(jsonItem);
-
-    $.ajax({
-        url: "http://localhost:8080/pos/item",
-        type: "POST",
-        data: jsonItem,
-        headers: { "Content-Type": "application/json" },
-        success: (res) => {
-            loadTable();
-            $('#item-reset').click();
-            console.log(JSON.stringify(res));
-            Swal.fire({
-                title: JSON.stringify(res),
-                icon: "success"
-            });
-        },
-        error: (res) => {
-            console.error(res);
-        }
-    });
 
 
-
-    setTimeout(() => {
-        initialize()
-    },1000)
-
-    /*if (itemCode == "" || itemName == "" || itemPrice == "" || itemQty == "") {
+    if (itemCode == "" || itemName == "" || itemPrice == "" || itemQty == "") {
         customAlert("Please fill all the fields");
     }else if (!regexPrice.test(itemPrice)) {
         customAlert("Please enter a valid price!",'assets/alert/alert-blink.gif');
@@ -121,6 +92,8 @@ $('#newItem').on('click', ()=>{
             data: jsonItem,
             headers: { "Content-Type": "application/json" },
             success: (res) => {
+                loadTable();
+                $('#item-reset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
                     title: JSON.stringify(res),
@@ -132,12 +105,12 @@ $('#newItem').on('click', ()=>{
             }
         });
 
-        $('#item_reset').click();
+
 
         setTimeout(() => {
             initialize()
         },1000)
-    }*/
+    }
 
 
 
@@ -146,9 +119,13 @@ $('#newItem').on('click', ()=>{
 $("#ItemUpdate").on("click", function() {
 
     console.log("update Item details")
+
+    var id = $('#ItemId').val();
     var itemName = $('#ItemName').val();
     var itemPrice = $('#ItemPrice').val();
     var itemQty = $('#ItemQty').val();
+
+
 
     if ( itemName == "" || itemPrice == "" || itemQty == "") {
         customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
@@ -157,15 +134,37 @@ $("#ItemUpdate").on("click", function() {
     }else if (!regexPrice.test(itemQty)) {
         customAlert("Please enter a valid Qty!",'assets/alert/alert-blink.gif');
     }  else {
-        let itemObj = items[recordIndex];
+        let item = new ItemModel(id, itemName, itemPrice, itemQty);
+        let jsonItem = JSON.stringify(item);
+        console.log(jsonItem);
 
-        itemObj.itemName = itemName;
-        itemObj.itemPrice = itemPrice;
-        itemObj.itemQty = itemQty;
+        $.ajax({
+            url: "http://localhost:8080/pos/item",
+            type: "PUT",
+            data: jsonItem,
+            headers: { "Content-Type": "application/json" },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "success"
+                });
+            },
+            error: (res) => {
+                console.error(res);
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "error"
+                });
+            }
+        });
 
+        $('#reset').click();
 
-        loadTable();
-        $('#item-reset').click();
+        setTimeout(() => {
+            initialize()
+        },1000)
+
     }
 
 
