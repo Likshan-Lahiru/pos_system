@@ -9,29 +9,60 @@ var recordIndex;
 initialize()
 
 function initialize() {
-    if (items.length === 0) {
-        $('#ItemId').val(1);
-    } else {
-        $('#ItemId').val(parseInt(items[items.length-1].itemCode) + 1);
-    }
-    setItemIds(items)
+    $.ajax({
+        url: "http://localhost:8080/pos/item",
+        type: "GET",
+        data: {"nextid": "nextid"},
+        success: (res) => {
+            let code = res.substring(1, res.length - 1);
+            $('#ItemId').val(code);
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
 
-    loadTable();
+    setTimeout(() => {
+        loadTable();
+    },1000)
+
+
 
 }
 
 function loadTable() {
 
     $('#item-tbl-tBody').empty();
-    items.map((item, index)=>{
-        let record = `<tr>
-             <td class="item-code-value">${item.itemCode}</td>
-             <td class="item-name-value">${item.itemName}</td>
-             <td class="item-price-value">${item.itemPrice}</td>
-             <td class="item-qty-value">${item.itemQty}</td>
-         </tr>`;
-        $('#item-tbl-tBody').append(record);
-    })
+
+    let itemArray = [];
+
+    $.ajax({
+        url: "http://localhost:8080/pos/item",
+        type: "GET",
+        data: {"all": "getAll"},
+        success: (res) => {
+            console.log(res);
+            itemArray = JSON.parse(res);
+            console.log(itemArray);
+
+            setItemIds(itemArray);
+
+            itemArray.map((item, index) => {
+
+                let record = `<tr>
+             <td class="item-code-value">${item.id}</td>
+             <td class="item-name-value">${item.name}</td>
+             <td class="item-price-value">${item.unitPrice}</td>
+             <td class="item-qty-value">${item.qty}</td>
+             </tr>`;
+                $('#item-tbl-tBody').append(record);
+            });
+
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
 
 }
 $('#newItem').on('click', ()=>{
@@ -40,8 +71,38 @@ $('#newItem').on('click', ()=>{
    var itemName = $('#ItemName').val();
    var itemPrice = $('#ItemPrice').val();
    var itemQty = $('#ItemQty').val();
+    let item = new ItemModel(itemCode, itemName, itemPrice, itemQty
+    );
+    let jsonItem = JSON.stringify(item);
 
-    if (itemCode == "" || itemName == "" || itemPrice == "" || itemQty == "") {
+    console.log(jsonItem);
+
+    $.ajax({
+        url: "http://localhost:8080/pos/item",
+        type: "POST",
+        data: jsonItem,
+        headers: { "Content-Type": "application/json" },
+        success: (res) => {
+            loadTable();
+            $('#item-reset').click();
+            console.log(JSON.stringify(res));
+            Swal.fire({
+                title: JSON.stringify(res),
+                icon: "success"
+            });
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
+
+
+
+    setTimeout(() => {
+        initialize()
+    },1000)
+
+    /*if (itemCode == "" || itemName == "" || itemPrice == "" || itemQty == "") {
         customAlert("Please fill all the fields");
     }else if (!regexPrice.test(itemPrice)) {
         customAlert("Please enter a valid price!",'assets/alert/alert-blink.gif');
@@ -50,12 +111,33 @@ $('#newItem').on('click', ()=>{
     }  else {
         let item = new ItemModel(itemCode, itemName, itemPrice, itemQty
         );
-        items.push(item);
+        let jsonItem = JSON.stringify(item);
 
-        loadTable();
-        $('#item-reset').click();
-        initialize();
-    }
+        console.log(jsonItem);
+
+        $.ajax({
+            url: "http://localhost:8080/pos/item",
+            type: "POST",
+            data: jsonItem,
+            headers: { "Content-Type": "application/json" },
+            success: (res) => {
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "success"
+                });
+            },
+            error: (res) => {
+                console.error(res);
+            }
+        });
+
+        $('#item_reset').click();
+
+        setTimeout(() => {
+            initialize()
+        },1000)
+    }*/
 
 
 

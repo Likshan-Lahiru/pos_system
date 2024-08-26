@@ -10,17 +10,22 @@ var recordIndex;
 initialize()
 
 function initialize() {
-    loadTable();
+    $.ajax({
+        url: "http://localhost:8080/pos/customer",
+        type: "GET",
+        data: {"nextid": "nextid"},
+        success: (res) => {
+            let code = res.substring(1, res.length - 1);
+            $('#customerId').val(code);
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
 
-
-    if (customers.length == 0) {
-        $('#customerId').val(1);
-    } else {
-        var nextCustomerId = parseInt(customers[customers.length - 1].id) + 1;
-        $('#customerId').val(nextCustomerId);
-    }
-
-    setCustomerIds(customers);
+    setTimeout(() => {
+        loadTable();
+    },1000)
 }
 
 
@@ -88,6 +93,8 @@ $('#register1').on('click',()=>{
             headers: { "Content-Type": "application/json" },
             success: (res) => {
                 loadTable();
+                initialize();
+                $('#customerButtonReset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
                     title: JSON.stringify(res),
@@ -106,24 +113,54 @@ $('#register1').on('click',()=>{
 })
 $("#customerButtonUpdate").on("click", function() {
     console.log("update customer details")
+
     var newCustomerName = $('#newCustomerName').val();
     var customerAddress = $('#customerAddress').val();
     var customerPhone = $('#customerPhone').val();
+    var customerId = $("#customerId").val();
+
+
     if (customerId == "" || customerName == "" || customerAddress == "" || customerPhone == "") {
         customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
     } else if (!mobilePattern.test(customerPhone)) {
         customAlert("Please enter a valid phone number",'assets/alert/alert-blink.gif');
     } else {
-        let customerObj = customers[recordIndex];
+        let customer = new CustomerModel(
+            customerId,newCustomerName,customerAddress,customerPhone
+        );
+        let jsonCustomer = JSON.stringify(customer);
+        console.log(jsonCustomer);
 
-        customerObj.name = newCustomerName;
-        customerObj.address = customerAddress;
-        customerObj.phone = customerPhone;
+        $.ajax({
+            url: "http://localhost:8080/pos/customer",
+            type: "PUT",
+            data: jsonCustomer,
+            headers: { "Content-Type": "application/json" },
+            success: (res) => {
+                $('#customerButtonReset').click();
+                console.log(JSON.stringify(res));
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "success"
+                });
+            },
+            error: (res) => {
+                console.error(res);
+                Swal.fire({
+                    title: JSON.stringify(res),
+                    icon: "error"
+                });
+            }
+        });
 
 
-        loadTable();
-        $('#customerButtonReset').click();
+
+
+        setTimeout(() => {
+            initialize();
+        },1000)
     }
+
 
 
 
