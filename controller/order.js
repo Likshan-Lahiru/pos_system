@@ -32,17 +32,48 @@ function initialize(){
         order_id.val(parseInt(orders[orders.length - 1].orderId) + 1);
     }
 }
-customerId.on('input', () => {
-    console.log("set cmb box value")
+$('#customerIdDRD').on('change', () => {
+    console.log("Set combo box value");
 
-    if (customerId.val() !== 'select the customer'){
+/*    var selectElement = document.querySelector('#customerIdDRD');
+    var output = selectElement.value;*/
 
-        customerName.val(customers[customerId.val() - 1].name);
+    var e = document.getElementById("customerIdDRD");
+    var value = e.value;
+    var text = e.options[e.selectedIndex].text;
 
-    }else{
-        customerName.val('');
+    if (text !== '') {
+        $.ajax({
+            url: "http://localhost:8081/pos/customer",
+            type: "GET",
+            data: { "id": text },
+            success: (res) => {
+                console.log(res);
+
+                if (res) {
+                    try {
+                        let customer = JSON.parse(res);
+                        console.log(customer);
+
+                        $('#customerName').val(customer.name);
+
+                    } catch (e) {
+                        console.error("Error parsing JSON:", e);
+                    }
+                } else {
+                    console.warn("Received empty response from server.");
+
+                }
+            },
+            error: (res) => {
+                console.error("AJAX error:", res);
+            }
+        });
+    } else {
+        $('#customerName').val('');
     }
 });
+
 
 const formattedDate = new Date().toISOString().substr(0, 10);
 orderDate.val(formattedDate);

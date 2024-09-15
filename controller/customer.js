@@ -11,7 +11,7 @@ initialize()
 
 function initialize() {
     $.ajax({
-        url: "http://localhost:8080/pos/customer",
+        url: "http://localhost:8081/pos/customer",
         type: "GET",
         data: {"nextid": "nextid"},
         success: (res) => {
@@ -35,7 +35,7 @@ function loadTable(){
     let customersArray = [];
 
     $.ajax({
-        url: "http://localhost:8080/pos/customer",
+        url: "http://localhost:8081/pos/customer",
         type: "GET",
         data: {"all": "getAll"},
         success: (res) => {
@@ -87,7 +87,7 @@ $('#register1').on('click',()=>{
         console.log(jsonCustomer);
 
         $.ajax({
-            url: "http://localhost:8080/pos/customer",
+            url: "http://localhost:8081/pos/customer",
             type: "POST",
             data: jsonCustomer,
             headers: { "Content-Type": "application/json" },
@@ -165,6 +165,7 @@ $("#customerButtonUpdate").on("click", function() {
 
 
 });
+/**/
 
 $('#customer-tbl-tBody').on('click','tr', function () {
     recordIndex = $(this).index();
@@ -191,7 +192,7 @@ $("#searchCustomer").on("input", function() {
         loadTable();
     } else {
         $.ajax({
-            url: "http://localhost:8080/pos/customer",
+            url: "http://localhost:8081/pos/customer",
             type: "GET",
             data: {"id": typedText},
             success: (res) => {

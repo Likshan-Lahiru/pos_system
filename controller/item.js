@@ -10,7 +10,7 @@ initialize()
 
 function initialize() {
     $.ajax({
-        url: "http://localhost:8080/pos/item",
+        url: "http://localhost:8081/pos/item",
         type: "GET",
         data: {"nextid": "nextid"},
         success: (res) => {
@@ -37,7 +37,7 @@ function loadTable() {
     let itemArray = [];
 
     $.ajax({
-        url: "http://localhost:8080/pos/item",
+        url: "http://localhost:8081/pos/item",
         type: "GET",
         data: {"all": "getAll"},
         success: (res) => {
@@ -87,7 +87,7 @@ $('#newItem').on('click', ()=>{
         console.log(jsonItem);
 
         $.ajax({
-            url: "http://localhost:8080/pos/item",
+            url: "http://localhost:8081/pos/item",
             type: "POST",
             data: jsonItem,
             headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ $("#ItemUpdate").on("click", function() {
         console.log(jsonItem);
 
         $.ajax({
-            url: "http://localhost:8080/pos/item",
+            url: "http://localhost:8081/pos/item",
             type: "PUT",
             data: jsonItem,
             headers: { "Content-Type": "application/json" },
@@ -194,7 +194,7 @@ $('#ItemDelete').on('click',  () => {
     var id = $('#ItemId').val();
     console.log(id)
     $.ajax({
-        url: "http://localhost:8080/pos/item?id=" + id,
+        url: "http://localhost:8081/pos/item?id=" + id,
         type: "DELETE",
         success: (res) => {
             console.log(JSON.stringify(res));
@@ -229,7 +229,7 @@ $("#searchItem").on("input", function() {
         loadTable();
     } else {
         $.ajax({
-            url: "http://localhost:8080/pos/item",
+            url: "http://localhost:8081/pos/item",
             type: "GET",
             data: {"id": typedText},
             success: (res) => {
