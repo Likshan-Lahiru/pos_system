@@ -28,13 +28,14 @@ function initialize() {
 }
 
 function loadTable() {
+    let customersArray = [];
     $.ajax({
         url: "http://localhost:8080/api/v1/customer",
         type: "GET",
         dataType: "json",
         success: (res) => {
             console.log(res);
-            const customersArray = res;
+             customersArray = res;
             console.log(customersArray);
 
             setCustomerIds(customersArray);

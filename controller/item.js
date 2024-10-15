@@ -41,7 +41,7 @@ function loadTable() {
              itemArray = res;
             console.log(itemArray);
 
-            setCustomerIds(itemArray);
+            setItemIds(itemArray);
 
             itemArray.forEach((item, index) => {
 

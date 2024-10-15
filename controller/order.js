@@ -44,18 +44,17 @@ $('#customerIdDRD').on('change', () => {
 
     if (text !== '') {
         $.ajax({
-            url: "http://localhost:8081/pos/customer",
+            url: "http://localhost:8080/api/v1/customer/" + text,
             type: "GET",
-            data: { "id": text },
+            data: "json",
             success: (res) => {
                 console.log(res);
 
                 if (res) {
                     try {
-                        let customer = JSON.parse(res);
-                        console.log(customer);
 
-                        $('#customerName').val(customer.name);
+
+                        $('#customerName').val(res.customerName);
 
                     } catch (e) {
                         console.error("Error parsing JSON:", e);
@@ -74,6 +73,47 @@ $('#customerIdDRD').on('change', () => {
     }
 });
 
+$('#itemIdDRD').on('change', () => {
+    console.log("Set combo box value");
+
+    /*    var selectElement = document.querySelector('#customerIdDRD');
+        var output = selectElement.value;*/
+
+    var t = document.getElementById("itemIdDRD");
+
+    var text = t.options[t.selectedIndex].text;
+
+    if (text !== '') {
+        $.ajax({
+            url: "http://localhost:8080/api/v1/item/" + text,
+            type: "GET",
+            data: "json",
+            success: (res) => {
+                console.log(res);
+
+                if (res) {
+                    try {
+                        $('#qtyOnHand').val(res.quantity);
+                        $('#ItemName1').val(res.description);
+                        $('#unitPrice').val(res.unitPrice);
+
+
+                    } catch (e) {
+                        console.error("Error parsing JSON:", e);
+                    }
+                } else {
+                    console.warn("Received empty response from server.");
+
+                }
+            },
+            error: (res) => {
+                console.error("AJAX error:", res);
+            }
+        });
+    } else {
+        $('#customerName').val('');
+    }
+});
 
 const formattedDate = new Date().toISOString().substr(0, 10);
 orderDate.val(formattedDate);
@@ -83,7 +123,7 @@ export function setCustomerIds(data) {
     customerId.append('<option selected>select the customer</option>');
 
     for (let i = 0; i < data.length; i++) {
-        customerId.append('<option value="' + (i + 1) + '">' + data[i].id + '</option>');
+        customerId.append('<option value="' + (i + 1) + '">' + data[i].customerId + '</option>');
     }
 }
 
@@ -92,21 +132,21 @@ export function setItemIds(data) {
     item_Id.append('<option selected>select the item</option>');
 
     for (let i = 0; i < data.length; i++) {
-        item_Id.append('<option value="' + (i + 1) + '">' + data[i].itemCode + '</option>');
+        item_Id.append('<option value="' + (i + 1) + '">' + data[i].itemId + '</option>');
     }
 }
 
-item_Id.on('input', () => {
-    if (item_Id.val() !== 'select the customer'){
-        itemName.val(items[item_Id.val() - 1].itemName);
-        qtyOnHand.val(items[item_Id.val() - 1].itemQty);
-        unit_Price.val(items[item_Id.val() - 1].itemPrice);
+/*item_Id.on('input', () => {
+    if (item_Id.val() !== 'select the item'){
+        itemName.val(items[item_Id.val() - 1].description);
+        qtyOnHand.val(items[item_Id.val() - 1].unitPrice);
+        unit_Price.val(items[item_Id.val() - 1].quantity);
     }else{
         itemName.val('');
         qtyOnHand.val('');
         unit_Price.val('');
     }
-});
+});*/
 
 addCartBtn.on('click', () => {
     let itemId = item_Id.val();
