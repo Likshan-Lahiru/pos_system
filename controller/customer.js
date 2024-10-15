@@ -11,12 +11,11 @@ initialize()
 
 function initialize() {
     $.ajax({
-        url: "http://localhost:8081/pos/customer",
+        url: "http://localhost:8080/api/v1/customer/genCusID",
         type: "GET",
-        data: {"nextid": "nextid"},
         success: (res) => {
-            let code = res.substring(1, res.length - 1);
-            $('#customerId').val(code);
+
+            $('#customerId').val(res);
         },
         error: (res) => {
             console.error(res);
@@ -25,92 +24,84 @@ function initialize() {
 
     setTimeout(() => {
         loadTable();
-    },1000)
+    }, 1000);
 }
 
-
-function loadTable(){
-
-    $('#customer-tbl-tBody').empty();
-    let customersArray = [];
-
+function loadTable() {
     $.ajax({
-        url: "http://localhost:8081/pos/customer",
+        url: "http://localhost:8080/api/v1/customer",
         type: "GET",
-        data: {"all": "getAll"},
+        dataType: "json",
         success: (res) => {
             console.log(res);
-            customersArray = JSON.parse(res);
+            const customersArray = res;
             console.log(customersArray);
 
             setCustomerIds(customersArray);
 
-            customersArray.map((customer, index) => {
+            customersArray.forEach((customer, index) => {
 
                 var record = `<tr>
-                     <td class="customer-id-value">${customer.id}</td>
-                     <td class="customer-name-value">${customer.name}</td>
-                     <td class="customer-address-value">${customer.address}</td>
-                     <td class="customer-phone-value">${customer.contact}</td>
-                </tr>`;
+                 <td class="customer-id-value">${customer.customerId}</td>
+                 <td class="customer-name-value">${customer.customerName}</td>
+                 <td class="customer-address-value">${customer.customerAddress}</td>
+                 <td class="customer-phone-value">${customer.customerPhone}</td>
+            </tr>`;
 
                 $('#customer-tbl-tBody').append(record);
             });
 
         },
         error: (res) => {
-            console.error(res);
+            console.error("Failed to load customers:", res);
+            customAlert("Failed to load customers.", 'assets/alert/alert-error.gif'); // Optional
         }
     });
 }
 
-$('#register1').on('click',()=>{
-
+$('#register1').on('click', () => {
     var customerId = $('#customerId').val();
     var customerName = $('#newCustomerName').val();
-    var customerAddress =$('#customerAddress').val();
-    var customerPhone =  $('#customerPhone').val();
+    var customerAddress = $('#customerAddress').val();
+    var customerPhone = $('#customerPhone').val();
 
     console.log(customerId, customerName, customerAddress, customerPhone);
 
-
-
-    if (customerId == "" || customerName == "" || customerAddress == "" || customerPhone == "") {
-       customAlert("Please fill all the fields",'assets/alert/alert-blink.gif');
+    if (customerId === "" || customerName === "" || customerAddress === "" || customerPhone === "") {
+        customAlert("Please fill all the fields", 'assets/alert/alert-blink.gif');
     } else if (!mobilePattern.test(customerPhone)) {
-        customAlert("Please enter a valid phone number",'assets/alert/alert-blink.gif');
+        customAlert("Please enter a valid phone number", 'assets/alert/alert-blink.gif');
     } else {
         let customer = new CustomerModel(
-            customerId,customerName,customerAddress,customerPhone
+            customerId, customerName, customerAddress, customerPhone
         );
         let jsonCustomer = JSON.stringify(customer);
         console.log(jsonCustomer);
 
         $.ajax({
-            url: "http://localhost:8081/pos/customer",
+            url: "http://localhost:8080/api/v1/customer",
             type: "POST",
             data: jsonCustomer,
-            headers: { "Content-Type": "application/json" },
+            contentType: "application/json",
             success: (res) => {
                 loadTable();
                 initialize();
                 $('#customerButtonReset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
-                    title: JSON.stringify(res),
+                    title: "Customer saved successfully!",
+                    text: JSON.stringify(),
                     icon: "success"
                 });
             },
             error: (res) => {
                 console.error(res);
+                customAlert("Failed to save customer data.", 'assets/alert/alert-blink.gif');
             }
         });
-
     }
+});
 
-
-
-})
 $("#customerButtonUpdate").on("click", function() {
     console.log("update customer details")
 
@@ -132,16 +123,20 @@ $("#customerButtonUpdate").on("click", function() {
         console.log(jsonCustomer);
 
         $.ajax({
-            url: "http://localhost:8080/pos/customer",
+            url: "http://localhost:8080/api/v1/customer",
             type: "PUT",
             data: jsonCustomer,
             headers: { "Content-Type": "application/json" },
             success: (res) => {
+                initialize();
                 $('#customerButtonReset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
-                    title: JSON.stringify(res),
+
+                     title: "Customer Updated successfully!",
+                    text: JSON.stringify(),
                     icon: "success"
+
                 });
             },
             error: (res) => {
@@ -165,7 +160,6 @@ $("#customerButtonUpdate").on("click", function() {
 
 
 });
-/**/
 
 $('#customer-tbl-tBody').on('click','tr', function () {
     recordIndex = $(this).index();
@@ -183,8 +177,6 @@ $('#customer-tbl-tBody').on('click','tr', function () {
     $('#customerPhone').val(phone);
 });
 
-
-
 $("#searchCustomer").on("input", function() {
     var typedText = $("#searchCustomer").val();
 
@@ -192,25 +184,24 @@ $("#searchCustomer").on("input", function() {
         loadTable();
     } else {
         $.ajax({
-            url: "http://localhost:8081/pos/customer",
+            url: "http://localhost:8080/api/v1/customer/" + typedText,
             type: "GET",
-            data: {"id": typedText},
+            data: "json",
             success: (res) => {
                 console.log(res);
 
                 if (res) {
                     try {
-                        let customer = JSON.parse(res);
-                        console.log(customer);
+
 
                         $('#customer-tbl-tBody').empty();
 
                         var record = `<tr>
-                            <td class="cus-id-val">${customer.id}</td>
-                            <td class="cus-fname-val">${customer.name}</td>
-                            <td class="cus-address-val">${customer.address}</td>
-                            <td class="cus-contact-val">${customer.contact}</td>
-                        </tr>`;
+                        <td class="customer-id-value">${res.customerId}</td>
+                        <td class="customer-name-value">${res.customerName}</td>
+                         <td class="customer-address-value">${res.customerAddress}</td>
+                         <td class="customer-phone-value">${res.customerPhone}</td>
+                         </tr>`;
 
                         $('#customer-tbl-tBody').append(record);
 
@@ -230,15 +221,15 @@ $("#searchCustomer").on("input", function() {
     }
 });
 
-
-
 $('#customerButtonDelete').on('click',  () => {
 
     var id = $('#customerId').val();
     $.ajax({
-        url: "http://localhost:8080/pos/customer?id=" + id,
+
+        url: "http://localhost:8080/api/v1/customer/" + id,
         type: "DELETE",
         success: (res) => {
+            initialize();
             console.log(JSON.stringify(res));
             Swal.fire({
                 title: JSON.stringify(res),
@@ -254,14 +245,5 @@ $('#customerButtonDelete').on('click',  () => {
         }
     });
     $('#customerButtonReset').click();
-
-    setTimeout(() => {
-        initialize();
-    },1000)
+    loadTable();
 })
-
-
-
-
-
-

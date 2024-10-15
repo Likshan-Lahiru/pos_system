@@ -1,6 +1,6 @@
 import ItemModel from '../model/ItemModel.js';
 import { items} from '../db/dataBase.js';
-import {setItemIds} from '../controller/order.js';
+import {setCustomerIds, setItemIds} from '../controller/order.js';
 
 const regexPrice = /^\d+$/
 
@@ -10,18 +10,16 @@ initialize()
 
 function initialize() {
     $.ajax({
-        url: "http://localhost:8081/pos/item",
+        url: "http://localhost:8080/api/v1/item/genItemID",
         type: "GET",
-        data: {"nextid": "nextid"},
         success: (res) => {
-            let code = res.substring(1, res.length - 1);
-            $('#ItemId').val(code);
+
+            $('#ItemId').val(res);
         },
         error: (res) => {
             console.error(res);
         }
     });
-
     setTimeout(() => {
         loadTable();
     },1000)
@@ -31,40 +29,40 @@ function initialize() {
 }
 
 function loadTable() {
-
     $('#item-tbl-tBody').empty();
 
     let itemArray = [];
-
     $.ajax({
-        url: "http://localhost:8081/pos/item",
+        url: "http://localhost:8080/api/v1/item",
         type: "GET",
-        data: {"all": "getAll"},
+        dataType: "json",
         success: (res) => {
             console.log(res);
-            itemArray = JSON.parse(res);
+             itemArray = res;
             console.log(itemArray);
 
-            setItemIds(itemArray);
+            setCustomerIds(itemArray);
 
-            itemArray.map((item, index) => {
+            itemArray.forEach((item, index) => {
 
-                let record = `<tr>
-             <td class="item-code-value">${item.id}</td>
-             <td class="item-name-value">${item.name}</td>
-             <td class="item-price-value">${item.unitPrice}</td>
-             <td class="item-qty-value">${item.qty}</td>
-             </tr>`;
+                var record = `<tr>
+                 <td class="item-code-value">${item.itemId}</td>
+                 <td class="item-name-value">${item.description}</td>
+                 <td class="item-price-value">${item.unitPrice}</td>
+                <td class="item-qty-value">${item.quantity}</td>
+            </tr>`;
+
                 $('#item-tbl-tBody').append(record);
             });
 
         },
         error: (res) => {
-            console.error(res);
+            console.error("Failed to load customers:", res);
+            customAlert("Failed to load customers.", 'assets/alert/alert-error.gif'); // Optional
         }
     });
-
 }
+
 $('#newItem').on('click', ()=>{
     console.log("New Item save")
    var itemCode = $('#ItemId').val();
@@ -87,7 +85,7 @@ $('#newItem').on('click', ()=>{
         console.log(jsonItem);
 
         $.ajax({
-            url: "http://localhost:8081/pos/item",
+            url: "http://localhost:8080/api/v1/item",
             type: "POST",
             data: jsonItem,
             headers: { "Content-Type": "application/json" },
@@ -96,7 +94,8 @@ $('#newItem').on('click', ()=>{
                 $('#item-reset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
-                    title: JSON.stringify(res),
+                    title: "Item saved successfully!",
+                    text: JSON.stringify(),
                     icon: "success"
                 });
             },
@@ -139,16 +138,20 @@ $("#ItemUpdate").on("click", function() {
         console.log(jsonItem);
 
         $.ajax({
-            url: "http://localhost:8081/pos/item",
+            url: "http://localhost:8080/api/v1/item",
             type: "PUT",
             data: jsonItem,
             headers: { "Content-Type": "application/json" },
             success: (res) => {
+                $('#item-reset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
-                    title: JSON.stringify(res),
+                    title: "Item update successfully!",
+                    text: JSON.stringify(),
                     icon: "success"
+
                 });
+
             },
             error: (res) => {
                 console.error(res);
@@ -159,7 +162,7 @@ $("#ItemUpdate").on("click", function() {
             }
         });
 
-        $('#reset').click();
+
 
         setTimeout(() => {
             initialize()
@@ -188,18 +191,18 @@ $('#item-tbl-tBody').on('click','tr', function () {
     $('#ItemQty').val(qty);
 });
 
-
-
 $('#ItemDelete').on('click',  () => {
     var id = $('#ItemId').val();
     console.log(id)
     $.ajax({
-        url: "http://localhost:8081/pos/item?id=" + id,
+        url: "http://localhost:8080/api/v1/item/" + id,
         type: "DELETE",
         success: (res) => {
+            $('#item-reset').click();
             console.log(JSON.stringify(res));
             Swal.fire({
-                title: JSON.stringify(res),
+                title: "Item Delete successfully!",
+                text: JSON.stringify(),
                 icon: "success"
             });
         },
@@ -220,8 +223,6 @@ $('#ItemDelete').on('click',  () => {
 
 })
 
-
-
 $("#searchItem").on("input", function() {
     var typedText = $("#searchItem").val();
 
@@ -229,62 +230,38 @@ $("#searchItem").on("input", function() {
         loadTable();
     } else {
         $.ajax({
-            url: "http://localhost:8081/pos/item",
+            url: "http://localhost:8080/api/v1/item/" + typedText,
             type: "GET",
-            data: {"id": typedText},
+            data: "json",
             success: (res) => {
                 console.log(res);
 
                 if (res) {
                     try {
-                        let items;
 
-                        if (typeof res === 'string') {
-                            items = JSON.parse(res);
-                        } else {
-                            items = res;
-                        }
-                        console.log('Parsed items:', items);
 
                         $('#item-tbl-tBody').empty();
 
-                        if (Array.isArray(items)) {
-                            items.forEach((item) => {
-                                var record = `<tr>
-                                    <td class="item-code-value">${item.id}</td>
-                                    <td class="item-name-value">${item.name}</td>
-                                    <td class="item-price-value">${item.unitPrice}</td>
-                                    <td class="item-qty-value">${item.qty}</td>
-                                </tr>`;
-                                $('#item-tbl-tBody').append(record);
-                            });
-                        } else if (typeof items === 'object') {
-                            var record = `<tr>
-                                <td class="item-code-value">${items.id}</td>
-                                <td class="item-name-value">${items.name}</td>
-                                <td class="item-price-value">${items.unitPrice}</td>
-                                <td class="item-qty-value">${items.qty}</td>
-                            </tr>`;
-                            $('#item-tbl-tBody').append(record);
-                        } else {
-                            console.warn('Unexpected response format');
-                            $('#item-tbl-tBody').append('<tr><td colspan="4">No items found</td></tr>');
-                        }
+                        var record = `<tr>
+                        <td class="item-code-value">${res.itemId}</td>
+                         <td class="item-name-value">${res.description}</td>
+                         <td class="item-price-value">${res.unitPrice}</td>
+                         <td class="item-qty-value">${res.quantity}</td>
+                     </tr>`;
+
+                        $('#item-tbl-tBody').append(record);
+
                     } catch (e) {
-                        console.error('Error parsing JSON:', e);
-                        $('#item-tbl-tBody').empty();
-                        $('#item-tbl-tBody').append('<tr><td colspan="4">Error processing data</td></tr>');
+                        console.error("Error parsing JSON:", e);
                     }
                 } else {
-                    console.warn('Received empty response from server.');
+                    console.warn("Received empty response from server.");
                     $('#item-tbl-tBody').empty();
-                    $('#item-tbl-tBody').append('<tr><td colspan="4">No items found</td></tr>');
+                    $('#item-tbl-tBody').append('<tr><td colspan="4">No customer found</td></tr>');
                 }
             },
             error: (res) => {
-                console.error('AJAX error:', res);
-                $('#item-tbl-tBody').empty();
-                $('#item-tbl-tBody').append('<tr><td colspan="4">Error retrieving data</td></tr>');
+                console.error("AJAX error:", res);
             }
         });
     }
