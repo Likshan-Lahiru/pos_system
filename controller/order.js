@@ -199,6 +199,20 @@ function loadCart() {
         );
     });
 }
+function removeLoadCart() {
+    $('tbody').eq(2).empty();
+    cart.map((item) => {
+        $('tbody').eq(2).append(
+            `<tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>`
+        );
+    });
+}
 
 function setTotalValues(){
     let netTotal = calculateTotal();
@@ -286,38 +300,40 @@ order_btn.on('click', () => {
                 data: newJsonOrder,
                 headers: { "Content-Type": "application/json" },
                 success: (res) => {
-                    console.log(JSON.stringify(res));
-                    Swal.fire({
+                    cart.forEach((cart_item) => {
+                        let order_detail = new OrderDetailModel(id, cart_item.itemId, subTotal, cart_item.qty, cart_item.unitPrice);
+                        console.log(order_detail)
+                        let jsonOrderDetail = JSON.stringify(order_detail);
 
-                        text: JSON.stringify(),
-                        icon: "success"
+                        setTimeout(() => {
+                            $.ajax({
+                                url: "http://localhost:8080/api/v1/orderDetail",
+                                type: "POST",
+                                data: jsonOrderDetail,
+                                headers: { "Content-Type": "application/json" },
+                                success: (res) => {
+                                    console.log(JSON.stringify(res));
+                                    initialize();
+                                    removeLoadCart();
+                                    $("#customerIdDRD").val('');
+                                    $('#customerName').val("")
+                                    console.log(JSON.stringify(res));
+
+                                },
+                                error: (res) => {
+                                    console.error(res);
+
+                                }
+                            });
+                        },1000)
+
                     });
                 },
                 error: (res) => {
                     console.error(res);
                 }
             });
-            cart.forEach((cart_item) => {
-                let order_detail = new OrderDetailModel(id, cart_item.itemId, subTotal, cart_item.qty, cart_item.unitPrice);
-                console.log(order_detail)
-                let jsonOrderDetail = JSON.stringify(order_detail);
 
-                setTimeout(() => {
-                    $.ajax({
-                        url: "http://localhost:8080/api/v1/orderDetail",
-                        type: "POST",
-                        data: jsonOrderDetail,
-                        headers: { "Content-Type": "application/json" },
-                        success: (res) => {
-                            console.log(JSON.stringify(res));
-                        },
-                        error: (res) => {
-                            console.error(res);
-                        }
-                    });
-                },1000)
-
-            });
 
             customerName.val('');
             discount.val('');
