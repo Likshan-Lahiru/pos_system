@@ -26,11 +26,17 @@ const regexNumber = /^\d+$/
 initialize()
 
 function initialize(){
-    if (orders.length === 0) {
-        order_id.val(1);
-    } else {
-        order_id.val(parseInt(orders[orders.length - 1].orderId) + 1);
-    }
+    $.ajax({
+        url: "http://localhost:8080/api/v1/order/genOrderID",
+        type: "GET",
+        success: (res) => {
+
+            order_id.val(res);
+        },
+        error: (res) => {
+            console.error(res);
+        }
+    });
 }
 $('#customerIdDRD').on('change', () => {
     console.log("Set combo box value");
@@ -136,20 +142,12 @@ export function setItemIds(data) {
     }
 }
 
-/*item_Id.on('input', () => {
-    if (item_Id.val() !== 'select the item'){
-        itemName.val(items[item_Id.val() - 1].description);
-        qtyOnHand.val(items[item_Id.val() - 1].unitPrice);
-        unit_Price.val(items[item_Id.val() - 1].quantity);
-    }else{
-        itemName.val('');
-        qtyOnHand.val('');
-        unit_Price.val('');
-    }
-});*/
 
 addCartBtn.on('click', () => {
-    let itemId = item_Id.val();
+    var item = document.getElementById("itemIdDRD");
+
+    var text = item.options[item.selectedIndex].text;
+    let itemId = text;
     let orderQTY = parseInt(order_quantity.val());
     let unitPrice = unit_Price.val();
     let qty = qtyOnHand.val();
@@ -264,28 +262,63 @@ $('tbody').on('click', '.cart_remove', function() {
 
 order_btn.on('click', () => {
 
-    let orderId = order_id.val();
-    let order_date = orderDate.val();
-    let customer_Id = customerId.val();
+    let id = order_id.val();
+    let date = orderDate.val();
+    var customer_id = document.getElementById("customerIdDRD");
+    var customerId = customer_id.options[customer_id.selectedIndex].text;
     let subTotal = parseFloat(sub_total.text());
+    console.log("sub total :" + subTotal);
     let cashAmount = parseFloat(cash.val());
-    let discountValue = parseInt(discount.val()) || 0;
+    let discount_value = parseInt(discount.val()) || 0;
+
+
 
     if (cashAmount >= subTotal) {
         if (cart.length !== 0) {
 
-            let order = new OrderModel(orderId, order_date, discountValue, subTotal, customer_Id);
-            orders.push(order);
+            let order = new OrderModel(id, date, discount_value, customerId, subTotal);
+            let newJsonOrder = JSON.stringify(order);
             loadOrderTable();
 
-            cart.forEach((cart_item) => {
-                let order_detail = new OrderDetailModel(orderId, cart_item.itemId, cart_item.qty, cart_item.unitPrice, cart_item.total);
-                orderDetails.push(order_detail);
+            $.ajax({
+                url: "http://localhost:8080/api/v1/order",
+                type: "POST",
+                data: newJsonOrder,
+                headers: { "Content-Type": "application/json" },
+                success: (res) => {
+                    console.log(JSON.stringify(res));
+                    Swal.fire({
+
+                        text: JSON.stringify(),
+                        icon: "success"
+                    });
+                },
+                error: (res) => {
+                    console.error(res);
+                }
             });
-            cart.splice(0, cart.length);
-            loadCart();
-            clearItemSection();
-            customerId.val('select the customer');
+            cart.forEach((cart_item) => {
+                let order_detail = new OrderDetailModel(id, cart_item.itemId, subTotal, cart_item.qty, cart_item.unitPrice);
+                console.log(order_detail)
+                let jsonOrderDetail = JSON.stringify(order_detail);
+
+                setTimeout(() => {
+                    $.ajax({
+                        url: "http://localhost:8080/api/v1/orderDetail",
+                        type: "POST",
+                        data: jsonOrderDetail,
+                        headers: { "Content-Type": "application/json" },
+                        success: (res) => {
+                            console.log(JSON.stringify(res));
+                        },
+                        error: (res) => {
+                            console.error(res);
+                        }
+                    });
+                },1000)
+
+            });
+
             customerName.val('');
             discount.val('');
             cash.val('');
@@ -298,6 +331,7 @@ order_btn.on('click', () => {
             initialize();
 
             console.log(orderDetails);
+            console.log(order)
 
         } else {
             customAlert("please add items to cart",'assets/alert/alert-blink.gif');
