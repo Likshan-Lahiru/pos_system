@@ -1,4 +1,3 @@
-// customerController.js
 import CustomerModel from "../model/CustomerModel.js";
 import {setCustomerIds, setItemIds} from '../controller/order.js';
 
