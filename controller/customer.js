@@ -1,5 +1,6 @@
 // customerController.js
 import CustomerModel from "../model/CustomerModel.js";
+import {setCustomerIds, setItemIds} from '../controller/order.js';
 
 const addressPattern = /^[a-zA-Z0-9\s,'-]*$/;
 const mobilePattern = /^(?:\+94|94|0)?7\d{8}$/;
@@ -24,12 +25,15 @@ function initialize() {
 }
 
 function loadTable() {
+    let customerArray = [];
     $.ajax({
         url: "http://localhost:8080/api/v1/customer",
         type: "GET",
         dataType: "json",
         success: (res) => {
             $('#customer-tbl-tBody').empty();
+               customerArray = res;
+            setCustomerIds(customerArray);
             res.forEach((customer) => {
                 var record = `<tr>
                     <td class="customer-id-value">${customer.customerId}</td>
