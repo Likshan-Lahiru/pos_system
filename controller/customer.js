@@ -70,6 +70,7 @@ $('#register1').on('click', () => {
             contentType: "application/json",
             success: (res) => {
                 initialize();
+                $('#customerButtonReset').click();
                 Swal.fire({
                     title: "Customer saved successfully!",
                     text: JSON.stringify(),
@@ -105,6 +106,7 @@ $("#customerButtonUpdate").on("click", function() {
             contentType: "application/json",
             success: (res) => {
                 initialize();
+                $('#customerButtonReset').click();
                 Swal.fire({
                     title: "Customer updated successfully!",
                     text: JSON.stringify(),
@@ -138,6 +140,7 @@ $('#customerButtonDelete').on('click', () => {
         type: "DELETE",
         success: (res) => {
             initialize();
+            $('#customerButtonReset').click();
             Swal.fire({
                 title: "Customer Deleted successfully!",
                 text: JSON.stringify(),
