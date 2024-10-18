@@ -85,8 +85,8 @@ $('#register1').on('click', () => {
             data: jsonCustomer,
             contentType: "application/json",
             success: (res) => {
-                loadTable();
                 initialize();
+
                 $('#customerButtonReset').click();
                 console.log(JSON.stringify(res));
                 Swal.fire({
@@ -180,6 +180,7 @@ $('#customer-tbl-tBody').on('click','tr', function () {
 
 $("#searchCustomer").on("input", function() {
     var typedText = $("#searchCustomer").val();
+
 
     if (typedText.trim() === "") {
         loadTable();

@@ -224,13 +224,13 @@ $('#ItemDelete').on('click',  () => {
 })
 
 $("#searchItem").on("input", function() {
-    var typedText = $("#searchItem").val();
-
-    if (typedText.trim() === "") {
+    var itemId = $("#searchItem").val();
+    console.log("search Item"+itemId)
+    if (itemId.trim() === "") {
         loadTable();
     } else {
         $.ajax({
-            url: "http://localhost:8080/api/v1/item/" + typedText,
+            url: "http://localhost:8080/api/v1/item/" + itemId,
             type: "GET",
             data: "json",
             success: (res) => {
