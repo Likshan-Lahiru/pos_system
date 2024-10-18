@@ -70,7 +70,11 @@ $('#register1').on('click', () => {
             contentType: "application/json",
             success: (res) => {
                 initialize();
-                alert("Customer saved successfully!");
+                Swal.fire({
+                    title: "Customer saved successfully!",
+                    text: JSON.stringify(),
+                    icon: "success"
+                });
             },
             error: (res) => {
                 console.error(res);
@@ -101,7 +105,11 @@ $("#customerButtonUpdate").on("click", function() {
             contentType: "application/json",
             success: (res) => {
                 initialize();
-                alert("Customer updated successfully!");
+                Swal.fire({
+                    title: "Customer updated successfully!",
+                    text: JSON.stringify(),
+                    icon: "success"
+                });
             },
             error: (res) => {
                 console.error(res);
@@ -130,7 +138,11 @@ $('#customerButtonDelete').on('click', () => {
         type: "DELETE",
         success: (res) => {
             initialize();
-            alert("Customer deleted successfully!");
+            Swal.fire({
+                title: "Customer Deleted successfully!",
+                text: JSON.stringify(),
+                icon: "success"
+            });
         },
         error: (res) => {
             console.error(res);
